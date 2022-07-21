@@ -52,7 +52,6 @@ namespace Allup
             app.UseAuthorization();
             app.UseAuthentication();
             app.UseStaticFiles();
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

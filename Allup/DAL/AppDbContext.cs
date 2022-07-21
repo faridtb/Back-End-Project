@@ -24,6 +24,7 @@ namespace Allup.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TagProduct> TagProducts { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Bio> Bios { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

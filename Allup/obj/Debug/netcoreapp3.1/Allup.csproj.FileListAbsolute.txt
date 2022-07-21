@@ -52,3 +52,6 @@ C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Allup
 C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.dll
 C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.pdb
 C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.genruntimeconfig.cache
+C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs

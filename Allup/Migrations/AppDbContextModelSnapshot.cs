@@ -37,6 +37,36 @@ namespace Allup.Migrations
                     b.ToTable("BasketItems");
                 });
 
+            modelBuilder.Entity("Allup.Models.Bio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupportContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bios");
+                });
+
             modelBuilder.Entity("Allup.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -67,7 +97,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 7, 22, 1, 16, 50, 64, DateTimeKind.Local).AddTicks(4431),
+                            CreatedAt = new DateTime(2022, 7, 22, 1, 37, 11, 699, DateTimeKind.Local).AddTicks(1267),
                             IsDeleted = false,
                             Name = "Adidas"
                         });
