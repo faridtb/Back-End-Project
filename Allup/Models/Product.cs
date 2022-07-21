@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Allup.Models
 {
-    internal class Product
+    public class Product : Common
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public bool IsFeatured { get; set; }
@@ -19,22 +19,26 @@ namespace Allup.Models
         public double TaxPercent { get; set; }
         public int StockCount { get; set; }
 
-        public Nullable<DateTime> CreatedAt { get; set; }
-        public Nullable<DateTime> DeletedAt { get; set; }
-        public Nullable<DateTime> UptadetAt { get; set; }
-
 
 
 
         public int CategoryId { get; set; }
+
+        [NotMappedAttribute]
         public Category Category { get; set; }
 
         public int BrandId { get; set; }
+
+        [NotMappedAttribute]
         public Brand Brand { get; set; }
 
+        [NotMappedAttribute]
         public List<TagProduct> TagProducts { get; set; }
+        [NotMappedAttribute]
         public List<ProductImage> ProductImages { get; set; }
+        [NotMappedAttribute]
         public List<OrderItem> OrderItems { get; set; }
+        [NotMappedAttribute]
         public List<BasketItem> BasketItems { get; set; }
     }
 }

@@ -1,25 +1,27 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Allup.Models
 {
-    internal class Category
+    public class Category : Common
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
+
+        [NotMappedAttribute]
         public Category Parent { get; set; }
+
+        [NotMappedAttribute]
         public List<Category> Children { get; set; }
         public string ImageUrl { get; set; }
+
+        [NotMappedAttribute]
         public IFormFile Image { get; set; }
         public bool IsDeleted { get; set; }
-        public Nullable<DateTime> CreatedAt { get; set; }
-        public Nullable<DateTime> DeletedAt { get; set; }
-        public Nullable<DateTime> UptadetAt { get; set; }
-
-
+        [NotMappedAttribute]
         public List<Product> Products { get; set; }
     }
 }
