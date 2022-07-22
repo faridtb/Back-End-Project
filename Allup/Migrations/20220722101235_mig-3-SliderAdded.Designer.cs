@@ -4,47 +4,22 @@ using Allup.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Allup.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220722101235_mig-3-SliderAdded")]
+    partial class mig3SliderAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Allup.Models.Banner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Banners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImageUrl = "images/banner-1.png"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImageUrl = "images/banner-2.png"
-                        });
-                });
 
             modelBuilder.Entity("Allup.Models.BasketItem", b =>
                 {
@@ -124,7 +99,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 7, 22, 14, 47, 50, 119, DateTimeKind.Local).AddTicks(4625),
+                            CreatedAt = new DateTime(2022, 7, 22, 14, 12, 35, 381, DateTimeKind.Local).AddTicks(4126),
                             IsDeleted = false,
                             Name = "Adidas"
                         });
@@ -321,7 +296,7 @@ namespace Allup.Migrations
                             Id = 1,
                             Desc = "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform",
                             DiscountSec = "Save $666 when you buy",
-                            ImageUrl = "images/slider-1.jpg",
+                            ImageUrl = "~/assets/images/slider-1.jpg",
                             Title = "2079 Virtual Reality"
                         },
                         new
@@ -329,7 +304,7 @@ namespace Allup.Migrations
                             Id = 2,
                             Desc = "Etceken masindan istifade etmekle siz, qessabdan aldiginiz iri tikeleri rahatliqla qiyme halina cevirib dadli kotletler hazirlaya bilersiniz !",
                             DiscountSec = "Mohtesem Companiyyaa Shok shok !!!",
-                            ImageUrl = "images/slider-2.jpg",
+                            ImageUrl = "~/assets/images/slider-2.jpg",
                             Title = "Et ceken masinnnnn"
                         });
                 });

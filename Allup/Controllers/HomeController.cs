@@ -1,4 +1,5 @@
 ﻿using Allup.DAL;
+using Allup.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,26 @@ namespace Allup.Controllers
         }
         public IActionResult Index()
         {
+            HomeVM home = new HomeVM();
+            home.Sliders = _context.Sliders.ToList();
+            home.Banners = _context.Banners.ToList();
+
+
+
+
+            return View(home);
+        }
+
+        public IActionResult Shop()
+        {
             return View();
         }
+
+        public IActionResult Detail()
+        {
+            return View();
+        }
+
+
     }
 }
