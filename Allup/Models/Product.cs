@@ -34,7 +34,7 @@ namespace Allup.Models
 
         [NotMappedAttribute]
         public List<TagProduct> TagProducts { get; set; }
-        [NotMappedAttribute]
+        
         public List<ProductImage> ProductImages { get; set; }
         [NotMappedAttribute]
         public List<OrderItem> OrderItems { get; set; }

@@ -4,14 +4,16 @@ using Allup.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Allup.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220722113809_mig-5-CategorySeedDone")]
+    partial class mig5CategorySeedDone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,72 +126,9 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 436, DateTimeKind.Local).AddTicks(7387),
+                            CreatedAt = new DateTime(2022, 7, 22, 15, 38, 8, 768, DateTimeKind.Local).AddTicks(9635),
                             IsDeleted = false,
                             Name = "Adidas"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(7593),
-                            IsDeleted = false,
-                            Name = "Samsung"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8053),
-                            IsDeleted = false,
-                            Name = "Asus"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8094),
-                            IsDeleted = false,
-                            Name = "Philips"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8133),
-                            IsDeleted = false,
-                            Name = "Sony"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8184),
-                            IsDeleted = false,
-                            Name = "Xiaomi"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8221),
-                            IsDeleted = false,
-                            Name = "Apple"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8260),
-                            IsDeleted = false,
-                            Name = "Gucci"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8296),
-                            IsDeleted = false,
-                            Name = "Pegasus"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 441, DateTimeKind.Local).AddTicks(8335),
-                            IsDeleted = false,
-                            Name = "Logitech"
                         });
                 });
 
@@ -229,7 +168,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(7857),
                             ImageUrl = "images/category-1.jpg",
                             IsDeleted = false,
                             Name = "Laptop",
@@ -238,7 +176,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8414),
                             ImageUrl = "images/category-2.jpg",
                             IsDeleted = false,
                             Name = "Computer"
@@ -246,7 +183,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8470),
                             ImageUrl = "images/category-3.jpg",
                             IsDeleted = false,
                             Name = "Smartphone"
@@ -254,7 +190,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8510),
                             ImageUrl = "images/category-4.jpg",
                             IsDeleted = false,
                             Name = "Game Consoles"
@@ -262,7 +197,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8550),
                             ImageUrl = "images/category-5.jpg",
                             IsDeleted = false,
                             Name = "Bottoms"
@@ -270,7 +204,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8599),
                             ImageUrl = "images/category-6.jpg",
                             IsDeleted = false,
                             Name = "Tops & Sets"
@@ -278,7 +211,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8641),
                             ImageUrl = "images/category-7.jpg",
                             IsDeleted = false,
                             Name = "Audio & Video"
@@ -286,7 +218,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8711),
                             ImageUrl = "images/category-10.jpg",
                             IsDeleted = false,
                             Name = "Camera",
@@ -295,7 +226,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8845),
                             ImageUrl = "images/category-9.jpg",
                             IsDeleted = false,
                             Name = "Household"
@@ -303,7 +233,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8891),
                             ImageUrl = "images/category-8.jpg",
                             IsDeleted = false,
                             Name = "Accessories"
@@ -311,7 +240,6 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8931),
                             ImageUrl = "images/category-11.jpg",
                             IsDeleted = false,
                             Name = "Michrophone",
@@ -320,19 +248,10 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(8970),
                             ImageUrl = "images/category-12.jpg",
                             IsDeleted = false,
                             Name = "Video Games",
                             ParentId = 4
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(9010),
-                            ImageUrl = "images/category-1.jpg",
-                            IsDeleted = false,
-                            Name = "Technologics"
                         });
                 });
 
@@ -442,127 +361,6 @@ namespace Allup.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BestSeller = false,
-                            BrandId = 10,
-                            CategoryId = 4,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 442, DateTimeKind.Local).AddTicks(9812),
-                            DiscountPrice = 30.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = false,
-                            Name = "Joystic Logitech g66",
-                            NewArrival = true,
-                            Price = 900.0,
-                            StockCount = 33,
-                            TaxPercent = 0.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BestSeller = true,
-                            BrandId = 5,
-                            CategoryId = 10,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 443, DateTimeKind.Local).AddTicks(7309),
-                            DiscountPrice = 30.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = false,
-                            Name = "Qulaqliqs",
-                            NewArrival = false,
-                            Price = 250.0,
-                            StockCount = 30,
-                            TaxPercent = 0.0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BestSeller = false,
-                            BrandId = 4,
-                            CategoryId = 10,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 443, DateTimeKind.Local).AddTicks(7673),
-                            DiscountPrice = 0.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = true,
-                            Name = "Flashcard",
-                            NewArrival = false,
-                            Price = 75.0,
-                            StockCount = 25,
-                            TaxPercent = 0.0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BestSeller = true,
-                            BrandId = 2,
-                            CategoryId = 7,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 443, DateTimeKind.Local).AddTicks(7716),
-                            DiscountPrice = 0.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = false,
-                            Name = "Printer (Samsung Yta-55)",
-                            NewArrival = true,
-                            Price = 300.0,
-                            StockCount = 25,
-                            TaxPercent = 0.0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BestSeller = false,
-                            BrandId = 2,
-                            CategoryId = 13,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 443, DateTimeKind.Local).AddTicks(7756),
-                            DiscountPrice = 0.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = true,
-                            Name = "Drone",
-                            NewArrival = true,
-                            Price = 3000.0,
-                            StockCount = 9,
-                            TaxPercent = 0.0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BestSeller = true,
-                            BrandId = 1,
-                            CategoryId = 10,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 443, DateTimeKind.Local).AddTicks(7803),
-                            DiscountPrice = 0.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = true,
-                            Name = "Sunglasses",
-                            NewArrival = false,
-                            Price = 99.0,
-                            StockCount = 800,
-                            TaxPercent = 0.0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BestSeller = false,
-                            BrandId = 3,
-                            CategoryId = 13,
-                            CreatedAt = new DateTime(2022, 7, 22, 18, 1, 54, 443, DateTimeKind.Local).AddTicks(7841),
-                            DiscountPrice = 0.0,
-                            InStock = true,
-                            IsDeleted = false,
-                            IsFeatured = true,
-                            Name = "PhotoAparatte",
-                            NewArrival = false,
-                            Price = 199.0,
-                            StockCount = 75,
-                            TaxPercent = 0.0
-                        });
                 });
 
             modelBuilder.Entity("Allup.Models.ProductImage", b =>
@@ -583,109 +381,7 @@ namespace Allup.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("ProductImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImageUrl = "images/product/product-3.jpg",
-                            IsMain = true,
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImageUrl = "images/product/product-9.jpg",
-                            IsMain = false,
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ImageUrl = "images/product/product-1.jpg",
-                            IsMain = true,
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ImageUrl = "images/product/product-2.jpg",
-                            IsMain = false,
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ImageUrl = "images/product/product-5.jpg",
-                            IsMain = true,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ImageUrl = "images/product/product-6.jpg",
-                            IsMain = false,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ImageUrl = "images/product/product-14.jpg",
-                            IsMain = true,
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ImageUrl = "images/product/product-15.jpg",
-                            IsMain = false,
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ImageUrl = "images/product/product-8.jpg",
-                            IsMain = true,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ImageUrl = "images/product/product-7.jpg",
-                            IsMain = false,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ImageUrl = "images/product/product-13.jpg",
-                            IsMain = true,
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ImageUrl = "images/product/product-12.jpg",
-                            IsMain = false,
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ImageUrl = "images/product/product-10.jpg",
-                            IsMain = true,
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ImageUrl = "images/product/product-11.jpg",
-                            IsMain = false,
-                            ProductId = 7
-                        });
                 });
 
             modelBuilder.Entity("Allup.Models.Slider", b =>
@@ -785,15 +481,6 @@ namespace Allup.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Allup.Models.ProductImage", b =>
-                {
-                    b.HasOne("Allup.Models.Product", "product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

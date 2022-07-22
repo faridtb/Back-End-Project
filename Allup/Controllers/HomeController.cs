@@ -1,6 +1,8 @@
 ﻿using Allup.DAL;
+using Allup.Models;
 using Allup.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +20,14 @@ namespace Allup.Controllers
         public IActionResult Index()
         {
             HomeVM home = new HomeVM();
+
             home.Sliders = _context.Sliders.ToList();
             home.Banners = _context.Banners.ToList();
-
+            home.Categories = _context.Categories.ToList();
+            home.Featured = _context.Products.Include(p => p.ProductImages).Where(p => p.IsFeatured == true).ToList();
+            home.NewArrivals = _context.Products.Include(p => p.ProductImages).Where(p => p.NewArrival == true).ToList();
+            home.BestSellers = _context.Products.Include(p => p.ProductImages).Where(p => p.BestSeller == true).ToList();
+            home.DiscountedProducts = _context.Products.Include(p => p.ProductImages).Where(p => p.DiscountPrice>=30).ToList();
 
 
 

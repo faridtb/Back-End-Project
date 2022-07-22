@@ -10,6 +10,13 @@ namespace Allup.ViewModels
     {
         public List<Slider> Sliders { get; set; }
         public List<Banner> Banners { get; set; }
+        public List<Category> Categories { get; set; } 
+        public List<Product> Featured { get; set; }
+        public List<Product> BestSellers { get; set; }
+        public List<Product> NewArrivals { get; set; }
+        public List<Product> DiscountedProducts { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+
     }
 }
 

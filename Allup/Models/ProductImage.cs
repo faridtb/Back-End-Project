@@ -13,7 +13,7 @@ namespace Allup.Models
 
         public int ProductId { get; set; }
 
-        [NotMappedAttribute]
+        
         public Product product { get; set; }
 
     }
