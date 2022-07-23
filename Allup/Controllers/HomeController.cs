@@ -21,16 +21,18 @@ namespace Allup.Controllers
         {
 
             List<Product> products = _context.Products.Include(p => p.ProductImages).ToList();
+            List<Category> categories = _context.Categories.ToList();
 
-            Category computer = _context.Categories.FirstOrDefault(c => c.Id == 1);
-            Category smartphone = _context.Categories.FirstOrDefault(c => c.Id == 3);
-            Category gameConsole = _context.Categories.FirstOrDefault(c => c.Id == 4);
+            Category computer = categories.FirstOrDefault(c => c.Id == 1);
+            Category smartphone = categories.FirstOrDefault(c => c.Id == 3);
+            Category gameConsole = categories.FirstOrDefault(c => c.Id == 4);
 
-            List<Category> computers = _context.Categories.Where(c => c.ParentId == computer.Id).ToList();
-            List<Category> smartphones = _context.Categories.Where(c => c.ParentId == smartphone.Id).ToList();
-            List<Category> gameConsoles = _context.Categories.Where(c => c.ParentId == gameConsole.Id).ToList();
+            List<Category> computers = categories.Where(c => c.ParentId == computer.Id).ToList();
+            List<Category> smartphones = categories.Where(c => c.ParentId == smartphone.Id).ToList();
+            List<Category> gameConsoles = categories.Where(c => c.ParentId == gameConsole.Id).ToList();
 
             HomeVM home = new HomeVM();
+            
 
             if (computers.Count == 0)
             {
@@ -73,7 +75,7 @@ namespace Allup.Controllers
            
             home.Sliders = _context.Sliders.ToList();
             home.Banners = _context.Banners.ToList();
-            home.Categories = _context.Categories.ToList();
+            home.Categories = categories;
             home.Brands = _context.Brands.ToList();
             home.ShippingBanners = _context.ShippingBanners.ToList();
             home.Blogs = _context.Blogs.ToList();
@@ -83,9 +85,9 @@ namespace Allup.Controllers
             home.BestSellers = products.Where(p => p.BestSeller == true).ToList();
             home.DiscountedProducts = products.Where(p => p.DiscountPrice >= 30).ToList();
 
-            
-           
 
+
+            CategorySubChecker(categories);
             return View(home);
         }
 
