@@ -21,6 +21,7 @@ namespace Allup.Models
         [NotMappedAttribute]
         public IFormFile Image { get; set; }
         public bool IsDeleted { get; set; }
+
         [NotMappedAttribute]
         public List<Product> Products { get; set; }
     }

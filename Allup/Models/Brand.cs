@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -12,6 +13,10 @@ namespace Allup.Models
 
         [NotMappedAttribute]
         public List<Product> Products { get; set; }
+        public string ImageUrl { get; set; }
+
+        [NotMappedAttribute]
+        public IFormFile Image { get; set; }
 
     }
 }

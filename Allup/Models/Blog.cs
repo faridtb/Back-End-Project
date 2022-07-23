@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace Allup.Models
 {
-    public class Banner
+    public class Blog
     {
         public int Id { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public DateTime Time { get; set; }
         public string ImageUrl { get; set; }
-
     }
 }

@@ -27,6 +27,9 @@ namespace Allup.DAL
         public DbSet<Bio> Bios { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Banner> Banners { get; set; }
+        public DbSet<ShippingBanner> ShippingBanners { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -41,6 +44,7 @@ namespace Allup.DAL
                     Id = 1,
                     Name = "Adidas",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-1.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -49,6 +53,7 @@ namespace Allup.DAL
                     Id = 2,
                     Name = "Samsung",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-2.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -57,6 +62,7 @@ namespace Allup.DAL
                     Id = 3,
                     Name = "Asus",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-3.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -65,6 +71,7 @@ namespace Allup.DAL
                     Id = 4,
                     Name = "Philips",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-4.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -73,6 +80,7 @@ namespace Allup.DAL
                     Id = 5,
                     Name = "Sony",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-5.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -81,6 +89,7 @@ namespace Allup.DAL
                     Id = 6,
                     Name = "Xiaomi",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-6.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -89,6 +98,7 @@ namespace Allup.DAL
                     Id = 7,
                     Name = "Apple",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-1.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -97,6 +107,7 @@ namespace Allup.DAL
                     Id = 8,
                     Name = "Gucci",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-2.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -105,6 +116,7 @@ namespace Allup.DAL
                     Id = 9,
                     Name = "Pegasus",
                     CreatedAt = DateTime.Now,
+                    ImageUrl = "images/brand/brand-4.jpg",
                 });
 
             builder.Entity<Brand>().HasData(
@@ -113,6 +125,7 @@ namespace Allup.DAL
                    Id = 10,
                    Name = "Logitech",
                    CreatedAt = DateTime.Now,
+                   ImageUrl = "images/brand/brand-3.jpg",
                });
 
             #endregion
@@ -177,7 +190,7 @@ namespace Allup.DAL
                    ImageUrl = "images/category-2.jpg",
                    IsDeleted = false,
                    Name = "Computer",
-                   CreatedAt = DateTime.Now
+                   CreatedAt = DateTime.Now,
                });
             builder.Entity<Category>().HasData(
                new Category
@@ -414,9 +427,43 @@ namespace Allup.DAL
                    DiscountPrice = 0,
                    TaxPercent = 0,
                });
+            builder.Entity<Product>().HasData(
+               new Product
+               {
+                   Id = 8,
+                   CreatedAt = DateTime.Now,
+                   NewArrival = true,
+                   BestSeller = false,
+                   IsFeatured = true,
+                   InStock = true,
+                   Name = "Xiaomi mi9t",
+                   Price = 900,
+                   StockCount = 75,
+                   CategoryId = 3,
+                   BrandId = 6,
+                   DiscountPrice = 0,
+                   TaxPercent = 0,
+               });
+            builder.Entity<Product>().HasData(
+               new Product
+               {
+                   Id = 9,
+                   CreatedAt = DateTime.Now,
+                   NewArrival = false,
+                   BestSeller = true,
+                   IsFeatured = false,
+                   InStock = true,
+                   Name = "Macbook Pro3",
+                   Price = 5000,
+                   StockCount = 39,
+                   CategoryId = 2,
+                   BrandId = 7,
+                   DiscountPrice = 0,
+                   TaxPercent = 0,
+               });
+
 
             #endregion
-
 
             #region ProductImages
 
@@ -539,8 +586,150 @@ namespace Allup.DAL
                  IsMain = false,
                  ProductId = 7,
              });
+            builder.Entity<ProductImage>().HasData(
+             new ProductImage
+             {
+                 Id = 15,
+                 ImageUrl = "images/category-3.jpg",
+                 IsMain = true,
+                 ProductId = 8,
+             });
+            builder.Entity<ProductImage>().HasData(
+             new ProductImage
+             {
+                 Id = 16,
+                 ImageUrl = "images/product/product-11.jpg",
+                 IsMain = false,
+                 ProductId = 8,
+             });
+            builder.Entity<ProductImage>().HasData(
+            new ProductImage
+            {
+                Id = 17,
+                ImageUrl = "images/category-1.jpg",
+                IsMain = true,
+                ProductId = 9,
+            });
+
+            builder.Entity<ProductImage>().HasData(
+            new ProductImage
+            {
+                Id = 18,
+                ImageUrl = "images/category-6.jpg",
+                IsMain = false,
+                ProductId = 9,
+            });
+
 
             #endregion
+
+            #region ShippingBanners
+            builder.Entity<ShippingBanner>().HasData(
+             new ShippingBanner
+             {
+                 Id = 1,
+                 ImageUrl = "images/banner-icon/icon1.png",
+                 Title = "Pulsuz Dasinmaa",
+                 Desc = "Gotur Apar",
+             });
+
+            builder.Entity<ShippingBanner>().HasData(
+              new ShippingBanner
+              {
+                  Id = 2,
+                  ImageUrl = "images/banner-icon/icon2.png",
+                  Title = "Ideal Dasinmaa",
+                  Desc = "Hefte ici her axsam"
+              });
+            builder.Entity<ShippingBanner>().HasData(
+              new ShippingBanner
+              {
+                  Id = 3,
+                  ImageUrl = "images/banner-icon/icon3.png",
+                  Title = "LIMAK KARGO LTD",
+                  Desc = "Hefte sonu her seher",
+              });
+            builder.Entity<ShippingBanner>().HasData(
+              new ShippingBanner
+              {
+                  Id = 4,
+                  ImageUrl = "images/banner-icon/icon4.png",
+                  Title = "BALIYEV KARGOS",
+                  Desc = "7/24 en bahali ve en keyfiyyetli dasinma biz beleyik ! ve bundan sonrada beledi belediki !",
+              });
+            #endregion
+
+            #region Blogs
+            builder.Entity<Blog>().HasData(
+               new Blog
+               {
+                   Id = 1,
+                   ImageUrl = "images/blog-1.jpg",
+                   Title = "Bu gun ne alim ?",
+                   Content = "Insana pul geldikce onu nece mehv etmeyi baresinde maraqli ideyalara sahib olmaga bashlayir..",
+                   Time = DateTime.Now,
+               });
+            builder.Entity<Blog>().HasData(
+               new Blog
+               {
+                   Id = 2,
+                   ImageUrl = "images/blog-2.jpg",
+                   Title = "Dunen ne aldim ?",
+                   Content = "Insana pul geldi ve onu nece mehv etmeyi baresinde maraqli ideyalara sahib olmaga bashladi...",
+                   Time = DateTime.Now,
+               });
+            builder.Entity<Blog>().HasData(
+               new Blog
+               {
+                   Id = 3,
+                   ImageUrl = "images/blog-3.jpg",
+                   Title = "Sabah ne alim ?",
+                   Content = "Insana pul gelerse onu nece mehv etmeyi baresinde maraqli ideyalara sahib olmaga bashlayacaq..",
+                   Time = DateTime.Now,
+               });
+            builder.Entity<Blog>().HasData(
+               new Blog
+               {
+                   Id = 4,
+                   ImageUrl = "images/blog-4.jpg",
+                   Title = "Bu umumiyyetle artiq blogdur evvelkilere baxin",
+                   Content = "ARtiq blog ve onun contenti....",
+                   Time = DateTime.Now,
+               });
+
+            #endregion
+
+            #region Testimonial
+            builder.Entity<Testimonial>().HasData(
+               new Testimonial
+               {
+                   Id = 1,
+                   AuthorName = "Farid",
+                   AuthorEmail = "farid@baliyev.com",
+                   Content = "Cagir ginen dost tanisivi otursun seniynen",
+                   ImageUrl = "images/author-1.png",
+               });
+            builder.Entity<Testimonial>().HasData(
+               new Testimonial
+               {
+                   Id = 2,
+                   AuthorName = "Takashi",
+                   AuthorEmail = "nakata@mail.ru",
+                   Content = "Vurdun insanlari bir birine",
+                   ImageUrl = "images/author-2.jpg",
+               });
+            builder.Entity<Testimonial>().HasData(
+               new Testimonial
+               {
+                   Id = 3,
+                   AuthorName = "Hiroshi",
+                   AuthorEmail = "hiri@mail.ru",
+                   Content = "Bomba kimidi havalar",
+                   ImageUrl = "images/author-3.jpg",
+               });
+
+            #endregion
+
         }
     }
 }
