@@ -91,16 +91,6 @@ namespace Allup.Controllers
             return View(home);
         }
 
-        public IActionResult Shop()
-        {
-            return View();
-        }
-
-        public IActionResult Detail()
-        {
-            return View();
-        }
-
 
 
 
