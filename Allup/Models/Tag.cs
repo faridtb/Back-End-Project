@@ -11,5 +11,6 @@ namespace Allup.Models
 
         [NotMappedAttribute]
         public List<TagProduct> TagProducts { get; set; }
+        public List<TagBlog> TagBlogs { get; set; } 
     }
 }

@@ -23,13 +23,9 @@ namespace Allup.Models
 
 
         public int CategoryId { get; set; }
-
-        [NotMappedAttribute]
         public Category Category { get; set; }
 
         public int BrandId { get; set; }
-
-        [NotMappedAttribute]
         public Brand Brand { get; set; }
 
         [NotMappedAttribute]
