@@ -11,7 +11,6 @@ namespace Allup.Models
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
 
-        [NotMappedAttribute]
         public List<Product> Products { get; set; }
         public string ImageUrl { get; set; }
 

@@ -60,7 +60,7 @@ namespace Allup.Controllers
             }
            
 
-            if (smartphones.Count == 0)
+            if (gameConsoles.Count == 0)
             {
                 home.GameConsoles = products.Where(p => p.CategoryId == gameConsole.Id).ToList();
             }
@@ -105,6 +105,7 @@ namespace Allup.Controllers
             return PartialView("_SearchPartial", products);
         }
 
+        //Children-Lama
         public void CategorySubChecker(List<Category> categories)
         {
             foreach (var item in categories)

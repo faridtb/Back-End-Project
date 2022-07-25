@@ -42,7 +42,6 @@ namespace Allup.Controllers
                     Id = product.Id,
                     Count = 1,
                     Price = product.Price,
-                    SubTotalPrice = product.Price
                 };
                 products.Add(basketVM);
             }
@@ -52,7 +51,6 @@ namespace Allup.Controllers
             }
 
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products));
-            BasketCalculator();
 
             if (ReturnUrl != null) return Redirect(ReturnUrl);
 
@@ -72,8 +70,6 @@ namespace Allup.Controllers
 
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products));
 
-            BasketCalculator();
-
             if (ReturnUrl != null) return Redirect(ReturnUrl);
 
             return RedirectToAction("index", "shop");
@@ -87,18 +83,6 @@ namespace Allup.Controllers
                 : new List<BasketVM>();
 
             return products;
-        }
-
-        public void BasketCalculator()
-        {
-            List<BasketVM> products = GetBasket();
-            if (products != null)
-            {
-                foreach (BasketVM item in products)
-                {
-                    item.SubTotalPrice += item.Price * item.Count;
-                }
-            }
         }
 
     }

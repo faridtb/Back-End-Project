@@ -28,13 +28,10 @@ namespace Allup.Models
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
 
-        [NotMappedAttribute]
         public List<TagProduct> TagProducts { get; set; }
         
         public List<ProductImage> ProductImages { get; set; }
-        [NotMappedAttribute]
         public List<OrderItem> OrderItems { get; set; }
-        [NotMappedAttribute]
         public List<BasketItem> BasketItems { get; set; }
     }
 }

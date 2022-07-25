@@ -30,7 +30,7 @@ namespace Allup.DAL
         public DbSet<ShippingBanner> ShippingBanners { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
-
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

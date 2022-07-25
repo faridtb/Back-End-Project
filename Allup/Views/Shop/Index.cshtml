@@ -68,8 +68,8 @@
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="single-product mt-30">
                                         <div class="product-image">
-                                            <a href="single-product.html">
-                                                <img class="first-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
+                                            <a asp-controller="detail"asp-action="index" asp-route-id="@item.Id">
+                                                <img class="first-image" asp-action="detail" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
                                                 <img class="second-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == false).ImageUrl" alt="product">
                                             </a>
                                             <ul class="product-meta">
@@ -109,8 +109,8 @@
                                 <div class="row">
                                     <div class="col-sm-5 col-xl-3">
                                         <div class="product-image">
-                                            <a href="single-product.html">
-                                                <img class="first-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
+                                            <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
+                                                <img class="first-image"  src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
                                                 <img class="second-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == false).ImageUrl" alt="product">
                                             </a>
                                             @if (item.DiscountPrice != 0)

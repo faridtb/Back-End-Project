@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Back-End Project\\Allup\\Allup\\Allup.csproj": {}
+    "C:\\Users\\User\\Desktop\\Back-End Project\\Back-End-Project\\Allup\\Allup.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Back-End Project\\Allup\\Allup\\Allup.csproj": {
+    "C:\\Users\\User\\Desktop\\Back-End Project\\Back-End-Project\\Allup\\Allup.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Back-End Project\\Allup\\Allup\\Allup.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Back-End Project\\Back-End-Project\\Allup\\Allup.csproj",
         "projectName": "Allup",
-        "projectPath": "C:\\Users\\User\\Desktop\\Back-End Project\\Allup\\Allup\\Allup.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Back-End Project\\Back-End-Project\\Allup\\Allup.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Back-End Project\\Allup\\Allup\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Back-End Project\\Back-End-Project\\Allup\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

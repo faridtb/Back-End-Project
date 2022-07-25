@@ -32,5 +32,6 @@ namespace Allup.Controllers
 
             return View(shopVM);
         }
+       
     }
 }
