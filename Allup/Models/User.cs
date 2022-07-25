@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Allup.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         [NotMappedAttribute]
@@ -15,6 +15,7 @@ namespace Allup.Models
 
         [NotMappedAttribute]
         public List<BasketItem> BasketItems { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 
     public enum Roles

@@ -13,7 +13,7 @@ namespace Allup.Models
         public string Email { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [NotMappedAttribute]
         public User User { get; set; }
