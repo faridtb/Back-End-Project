@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Allup.Models
 {
-    public class Order
+    public class Order : Common
     {
-        public int Id { get; set; }
-        public DateTime CreatedAt { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
         public OrderStatus OrderStatus { get; set; }
@@ -24,6 +22,7 @@ namespace Allup.Models
 
     public enum OrderStatus
     {
+        InBasket,
         Pending,
         Shipped,
 

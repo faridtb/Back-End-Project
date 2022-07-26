@@ -128,3 +128,4 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Wishlist\Index.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Basket\Index.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\DbBasket\Index.cshtml.g.cs

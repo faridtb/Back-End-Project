@@ -13,9 +13,7 @@ namespace Allup.Models
 
         [NotMappedAttribute]
         public List<Order> Orders { get; set; }
-
-        [NotMappedAttribute]
-        public List<BasketItem> BasketItems { get; set; }
+        public Basket basket { get; set; }
         public List<Comment> Comments { get; set; }
     }
 

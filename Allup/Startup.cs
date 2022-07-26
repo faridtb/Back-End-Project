@@ -64,7 +64,7 @@ namespace Allup
 
                 endpoints.MapControllerRoute(
                        "default",
-                       "{controller=home}/{action=Index}/{id?}"
+                       "{controller=shop}/{action=Index}/{id?}"
                        );
 
             });

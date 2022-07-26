@@ -1,7 +1,9 @@
-﻿using Allup.Models;
+﻿using Allup.DAL;
+using Allup.Models;
 using Allup.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +14,14 @@ namespace Allup.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly AppDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+        public AccountController(AppDbContext context,UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
         {
+            _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
@@ -60,6 +64,23 @@ namespace Allup.Controllers
             }
 
             await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
+
+            Basket basket = _context.Baskets
+                .Include(b => b.BasketItems)
+                .ThenInclude(b => b.Product)
+                .ThenInclude(b => b.ProductImages)
+                .FirstOrDefault(b => b.UserId == user.Id);
+
+            if (basket == null)
+            {
+                basket = new Basket() { UserId = user.Id };
+                _context.Add(basket);
+                _context.SaveChanges();
+                return RedirectToAction("index", "shop");
+            }
+
+
+            
             return RedirectToAction("login");
         }
 

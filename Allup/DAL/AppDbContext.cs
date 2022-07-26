@@ -33,6 +33,7 @@ namespace Allup.DAL
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<WishList> WishLists { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

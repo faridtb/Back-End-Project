@@ -9,12 +9,9 @@ namespace Allup.Models
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-
-        [NotMappedAttribute]
         public Product Product { get; set; }
-        public string UserId { get; set; }
-
-        [NotMappedAttribute]
-        public User User { get; set; }
+        public int ProductCount { get; set; }
+        public int BasketId { get; set; }
+        public Basket Basket { get; set; }
     }
 }
