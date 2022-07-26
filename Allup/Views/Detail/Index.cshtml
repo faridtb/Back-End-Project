@@ -208,7 +208,10 @@
                 <div class="product-rating-content">
                     <div class="average-rating">
                         <h4 class="rating-overall">4.5 <span>(Overall)</span></h4>
-                        <p>Based on 9 Comments</p>
+                        @if (Model.Comments != null)
+                        {
+                            <p>Based on @Model.Comments.Count Comments</p>
+                        }
                     </div>
                     <div class="rating-list d-flex flex-wrap">
                         <div class="single-rating">
@@ -253,29 +256,35 @@
                         </div>
                     </div>
                     <div class="rating-items">
-                        @foreach (var item in Model.Reviews.Where(x => x.ProductId == Model.Product.Id))
+                        @if (Model.Comments != null)
                         {
-                            <div class="single-rating-item">
-                                <div class="rating-author d-flex flex-wrap">
-                                    <h4 class="author-name">@item.SenderName</h4>
-                                    <ul class="rating-star">
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><span>(5)</span></li>
-                                    </ul>
+                            @foreach (var item in Model.Comments)
+                            {
+                                <div class="single-rating-item">
+                                    <div class="rating-author d-flex flex-wrap">
+                                        <h4 class="author-name">@item.User.Name</h4>
+                                        <ul class="rating-star">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><span>(5)</span></li>
+                                        </ul>
+                                    </div>
+                                    <p>
+                                        @item.Content
+                                    </p>
                                 </div>
-                                <p>@item.SendText</p>
-                            </div>
+                            }
                         }
-                    </div>
+                        </div>
+                       
 
                     <div class="rating-form">
                         <h4 class="form-title">Add your Comments</h4>
 
-                        <form action="#">
+                        <form method="post" asp-action="addcomment" asp-route-id="@Model.Product.Id">
                             <div class="rating-star d-flex">
                                 <span class="title">Rating:</span>
                                 <ul>
@@ -287,27 +296,15 @@
                                 </ul>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="single-form">
-                                        <label>Name:</label>
-                                        <input type="text" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single-form">
-                                        <label>Email:</label>
-                                        <input type="email" placeholder="Email">
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
                                     <div class="single-form">
                                         <label>Your Review:</label>
-                                        <textarea placeholder="Write a review"></textarea>
+                                        <textarea name="content" placeholder="Write a review"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="single-form">
-                                        <button class="main-btn">Add Review</button>
+                                        <button class="main-btn" type="submit">Add Review</button>
                                     </div>
                                 </div>
                             </div>

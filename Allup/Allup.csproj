@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\assets\fonts\fa-brands-400.svg" />
     <None Include="wwwroot\assets\fonts\fa-brands-400.woff2" />
     <None Include="wwwroot\assets\fonts\fa-light-300.svg" />

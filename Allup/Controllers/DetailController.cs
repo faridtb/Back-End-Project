@@ -1,6 +1,7 @@
 ﻿using Allup.DAL;
 using Allup.Models;
 using Allup.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,8 +14,15 @@ namespace Allup.Controllers
     public class DetailController : Controller
     {
         private readonly AppDbContext _context;
-        public DetailController(AppDbContext context)
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<User> _signInManager;
+
+        public DetailController(AppDbContext context,UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
         {
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
             _context = context;
         }
         public IActionResult Index(int? id)
@@ -41,10 +49,42 @@ namespace Allup.Controllers
             shopVM.Products = _context.Products.Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Category).ToList();
             shopVM.Brands = _context.Brands.ToList();
             shopVM.Banners = _context.ShippingBanners.ToList();
+            //shopVM.User = _context.Users
 
 
             return View(shopVM);
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int id, string content)
+        {
+            if (content == null) return View();
+
+            User user = new User();
+            if (User.Identity.IsAuthenticated)
+            {
+                user = await _userManager.FindByNameAsync(User.Identity.Name);
+            }
+            else
+            {
+                return RedirectToAction("login", "account");
+            }
+
+            Comment comment = new Comment
+            {
+                Content = content,
+                UserId = user.Id,
+                ProductId = id,
+                CreatedAt = DateTime.Now
+            };
+
+            await _context.AddAsync(comment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("detail", new { id = id });
+        }
+
     }
 }
+

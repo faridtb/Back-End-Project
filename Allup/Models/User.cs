@@ -9,6 +9,7 @@ namespace Allup.Models
     public class User : IdentityUser
     {
         public string Name { get; set; }
+        public string Surname { get; set; }
 
         [NotMappedAttribute]
         public List<Order> Orders { get; set; }
@@ -20,7 +21,7 @@ namespace Allup.Models
 
     public enum Roles
     {
-        Pending,
-        Shipped,
+        Admin,
+        Member,
     }
 }
