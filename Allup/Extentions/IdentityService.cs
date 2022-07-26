@@ -9,8 +9,8 @@ namespace Allup.Extentions
 {
     public static class IdentityService
     {
-        public static IServiceCollection AddIdentityServices(this IServiceCollection services,
-        IConfiguration config)
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services)
+        
         {
             services.AddIdentity<User, IdentityRole>(opt =>
             {

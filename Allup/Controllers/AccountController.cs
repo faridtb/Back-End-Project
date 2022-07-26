@@ -59,7 +59,7 @@ namespace Allup.Controllers
                 return View(registerVM);
             }
 
-            await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+            await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
             return RedirectToAction("login");
         }
 

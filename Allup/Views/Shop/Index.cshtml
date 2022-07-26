@@ -68,16 +68,17 @@
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="single-product mt-30">
                                         <div class="product-image">
-                                            <a asp-controller="detail"asp-action="index" asp-route-id="@item.Id">
+                                            <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
                                                 <img class="first-image" asp-action="detail" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
                                                 <img class="second-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == false).ImageUrl" alt="product">
                                             </a>
                                             <ul class="product-meta">
-                                                <li><a asp-controller="basket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                                <li><a asp-controller="basket" asp-action="AddItem" asp-route-id="@item.Id" asp-route-data="dadash/asdas"><i class="icon ion-bag"></i></a></li>
                                                 <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                                 <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                                 <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                             </ul>
+                                            
                                             @if (item.DiscountPrice != 0)
                                             {
                                                 <span class="discount-product">@item.DiscountPrice</span>

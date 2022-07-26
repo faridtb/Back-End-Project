@@ -32,7 +32,7 @@ namespace Allup
             {
                 option.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
-            services.AddIdentityServices(_config);
+            services.AddIdentityServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
