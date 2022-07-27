@@ -79,8 +79,68 @@ namespace Allup.Controllers
         }
 
 
+        public IActionResult Remove(int id, string ReturnUrl)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (userId == null) return RedirectToAction("login", "account");
 
+            Basket basket = _context.Baskets.FirstOrDefault(b => b.UserId == userId);
+
+            List<BasketItem> basketItems = _context.BasketItems.Where(b => b.BasketId == basket.Id).ToList();
+
+            BasketItem deleteItem = basketItems.FirstOrDefault(p => p.ProductId == id);
+
+            _context.BasketItems.Remove(deleteItem);
+
+            _context.SaveChanges();
+
+            if (ReturnUrl != null) return Redirect(ReturnUrl);
+
+            return RedirectToAction("index", "shop");
+        }
+
+        public IActionResult Plus(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null) return RedirectToAction("login", "account");
+
+            Basket basket = _context.Baskets.FirstOrDefault(b => b.UserId == userId);
+
+            List<BasketItem> basketItems = _context.BasketItems.Where(b => b.BasketId == basket.Id).ToList();
+
+            BasketItem increaseItem = basketItems.FirstOrDefault(p => p.ProductId == id);
+
+            if (increaseItem.ProductCount < _context.Products.FirstOrDefault(p => p.Id == id).StockCount)
+            {
+                _context.BasketItems.FirstOrDefault(b => b.Id == increaseItem.Id).ProductCount++;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("index", "dbbasket");
+        }
+
+        public IActionResult Minus(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null) return RedirectToAction("login", "account");
+
+            Basket basket = _context.Baskets.FirstOrDefault(b => b.UserId == userId);
+
+            List<BasketItem> basketItems = _context.BasketItems.Where(b => b.BasketId == basket.Id).ToList();
+
+            BasketItem decreaseItem = basketItems.FirstOrDefault(p => p.ProductId == id);
+
+            if (decreaseItem.ProductCount > 1 )
+            {
+                _context.BasketItems.FirstOrDefault(b => b.Id == decreaseItem.Id).ProductCount--;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("index", "dbbasket");
+        }
 
     }
 }

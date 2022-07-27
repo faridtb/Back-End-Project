@@ -25,7 +25,7 @@
                         <div class="cart-item-content media-body">
                             <h5 class="product-name"><a asp-controller="product" asp-action="detail">@item.Product.Name</a></h5>
                             <span class="product-price">€@item.Product.Price</span>
-                            <a asp-controller="basket" asp-action="remove" asp-route-id="@item.Product.Id" class="product-close"><i class="fal fa-times"></i></a>
+                            <a asp-controller="dbbasket" asp-action="remove" asp-route-id="@item.Product.Id" class="product-close"><i class="fal fa-times"></i></a>
                         </div>
                     </div>
                 </li>
