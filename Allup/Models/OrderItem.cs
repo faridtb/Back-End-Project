@@ -9,15 +9,13 @@ namespace Allup.Models
     {
         public int Id { get; set; }
         public double Total { get; set; }
-        public int Count { get; set; }
 
+        public double ProductPrice { get; set; }
+        public int ProductCount { get; set; }
         public int ProductId { get; set; }
-
-        [NotMappedAttribute]
         public Product Product { get; set; }
 
         public int OrderId { get; set; }
-        [NotMappedAttribute]
         public Order Order { get; set; }
 
 

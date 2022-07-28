@@ -1,7 +1,5 @@
-﻿@model Basket
+﻿@model Order 
 
-@if (Model != null)
-{
     <div class="container" style="width: 1200px; margin-top: 60px; display: flex;" id="full">
         <div class="row" style="width:1200px;position: relative;">
             <div class="col" style="display:flex;justify-content:start;align-items:start;flex-direction:column;min-width:900px;padding-right: 30px;  border:1px dashed gray">
@@ -13,40 +11,29 @@
                             <th scope="col" style="width:80px;padding: 8px;">Price</th>
                             <th scope="col" style="width:130px;padding: 8px;">Quantity</th>
                             <th scope="col" style="width:82px;padding: 8px;">Subtotal</th>
-                            <th scope="col" style="width:30px;padding: 8px;"></th>
                         </tr>
                     </thead>
                     <tbody style="width: 100%;">
-                        @foreach (var item in Model.BasketItems)
+                        @foreach (var item in Model.OrderItems)
                         {
                             <tr style="width: 100%;">
                                 <td><img src="~/assets/@item.Product.ProductImages.Find(i=>i.IsMain==true).ImageUrl" style="width: 70px; height: 70px;"></td>
                                 <td style="padding-top: 30px;">@item.Product.Name</td>
-                                <td style="padding-top: 30px;">$@item.Product.Price</td>
-                                <td style="padding: 30px; position: relative;"><span>@item.ProductCount</span><div style="width: 25px; height: 25px; border-radius: 50%; background-color: rgb(222, 222, 222); text-align: center; cursor: pointer; position: absolute; left: -5px; top: 30px;"><a asp-controller="dbbasket" asp-action="minus" asp-route-id="@item.ProductId">-</a></div><div style="width: 25px; height: 25px; border-radius: 50%; background-color: rgb(222, 222, 222); text-align: center; cursor: pointer; position: absolute; left: 50px; top: 30px;"><a asp-controller="dbbasket" asp-action="plus" asp-route-id="@item.ProductId">+</a></div></td>
-                                <td style="padding: 30px;">$@(item.Product.Price * item.ProductCount)</td>
-                                <td style="padding: 30px;"><a asp-controller="dbbasket" asp-action="remove" asp-route-id="@item.ProductId">x</a></td>
+                                <td style="padding-top: 30px;">$@item.ProductPrice</td>
+                                <td style="padding-top: 30px;">$@item.ProductCount</td>
+                                <td style="padding: 30px;">$@item.Total</td>
                             </tr>
                         }
                     </tbody>
                 </table>
+                <div style="padding-right:5px;border:3px dashed gray;font-size:22px;position:absolute;right:0px;bottom:0px;">
+                    <span style="margin-right:5px;color:dodgerblue">Total:</span>
+                    <span style="color:dimgrey">$@Model.TotalPrice</span>
+                </div>
             </div>
             <div class="checkout-btn" style="display:flex;margin:15px; justify-content:center;align-items:center;flex-direction:row;">
-                <a asp-controller="order" asp-action="index" class="main-btn main-btn-2">Place Order</a>
-            </div>
-        </div>
-    </div>
-}
-else
-{
-    <div class="container" style="width: 1200px; margin-top: 60px; display: flex;" id="full">
-        <div class="row" style="width:1200px;position: relative;">
-            <div class="col" style="display:flex;justify-content:start;align-items:start;flex-direction:column;min-width:900px;padding-right: 30px;">
-                <h1>EMPTY</h1>
+                <a asp-controller="order" asp-action="orders" class="main-btn main-btn-2">Back to Orders</a>
             </div>
         </div>
     </div>
 
-
-
-}

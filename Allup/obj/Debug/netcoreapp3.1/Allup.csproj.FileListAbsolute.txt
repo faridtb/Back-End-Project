@@ -90,7 +90,6 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.csprojAssemblyReference.cache
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.AssemblyInfoInputs.cache
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.AssemblyInfo.cs
@@ -99,8 +98,6 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.RazorAssemblyInfo.cache
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.RazorAssemblyInfo.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\staticwebassets\Allup.StaticWebAssets.Manifest.cache
-C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\staticwebassets\Allup.StaticWebAssets.xml
-C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\scopedcss\bundle\Allup.styles.css
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.TagHelpers.input.cache
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.TagHelpers.output.cache
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.RazorCoreGenerate.cache
@@ -212,3 +209,9 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Product\ActiveList.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Brand\ActiveList.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Brand\DeleteList.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Allup.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\staticwebassets\Allup.StaticWebAssets.xml
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\scopedcss\bundle\Allup.styles.css
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Order\Orders.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Order\OrderDetail.cshtml.g.cs
