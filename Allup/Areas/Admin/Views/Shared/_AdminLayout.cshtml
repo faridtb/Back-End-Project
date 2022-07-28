@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="~/Admin/css/jquery.steps.css">
     <link rel="stylesheet" href="~/Admin/css/jquery.timepicker.css">
     <link rel="stylesheet" href="~/Admin/css/quill.snow.css">
+    <link rel="stylesheet" href="~/Admin/css/dataTables.bootstrap4.css">
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" href="~/Admin/css/daterangepicker.css">
     <!-- App CSS -->
@@ -82,23 +83,23 @@
                         </a>
                         <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="create">
                                     <span class="ml-1 item-text">Create</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="index">
                                     <span class="ml-1 item-text">Delete</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="index">
                                     <span class="ml-1 item-text">Update</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
-                                    <span class="ml-1 item-text">Get ALL</span>
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="index">
+                                    <span class="ml-1 item-text">Get All</span>
                                 </a>
                             </li>
                         </ul>
@@ -110,23 +111,23 @@
                         </a>
                         <ul class="collapse list-unstyled pl-4 w-100" id="forms">
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="create">
                                     <span class="ml-1 item-text">Create</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
                                     <span class="ml-1 item-text">Delete</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
                                     <span class="ml-1 item-text">Update</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="#">
-                                    <span class="ml-1 item-text">Get ALL</span>
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
+                                    <span class="ml-1 item-text">Get All</span>
                                 </a>
                             </li>
                         </ul>
@@ -134,24 +135,27 @@
                     <li class="nav-item dropdown">
                         <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                             <i class="fe fe-grid fe-16"></i>
-                            <span class="ml-3 item-text">Tables</span>
+                            <span class="ml-3 item-text">Brand</span>
                         </a>
                         <ul class="collapse list-unstyled pl-4 w-100" id="tables">
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="./table_basic.html"><span class="ml-1 item-text">Basic Tables</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="create"><span class="ml-1 item-text">Create</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="./table_advanced.html"><span class="ml-1 item-text">Advanced Tables</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Delete</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" href="./table_datatables.html"><span class="ml-1 item-text">Data Tables</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Update</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Get All</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#charts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                             <i class="fe fe-pie-chart fe-16"></i>
-                            <span class="ml-3 item-text">Charts</span>
+                            <span class="ml-3 item-text">Order</span>
                         </a>
                         <ul class="collapse list-unstyled pl-4 w-100" id="charts">
                             <li class="nav-item">

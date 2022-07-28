@@ -38,6 +38,8 @@ namespace Allup.Controllers
                     .Include(p => p.ProductImages)
                     .Include(p => p.Brand)
                     .Include(p => p.Category)
+                    .Include(p => p.Comments)
+                    .ThenInclude(p=>p.User)
                     .Include(p => p.TagProducts)
                     .FirstOrDefault(p => p.Id == id);
 
@@ -61,7 +63,8 @@ namespace Allup.Controllers
         {
             if (content == null) return View();
 
-            User user = new User();
+            User user;
+
             if (User.Identity.IsAuthenticated)
             {
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -82,7 +85,7 @@ namespace Allup.Controllers
             await _context.AddAsync(comment);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("detail", new { id = id });
+            return RedirectToAction("index", new { id = id });
         }
 
     }

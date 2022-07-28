@@ -138,6 +138,11 @@ namespace Allup.Controllers
                 _context.BasketItems.FirstOrDefault(b => b.Id == decreaseItem.Id).ProductCount--;
                 _context.SaveChanges();
             }
+            else
+            {
+                _context.BasketItems.Remove(decreaseItem);
+                _context.SaveChanges();
+            }
 
             return RedirectToAction("index", "dbbasket");
         }
