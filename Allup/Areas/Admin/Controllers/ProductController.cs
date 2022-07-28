@@ -31,8 +31,39 @@ namespace Allup.Areas.Admin.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Brand)
                 .ToList();
+            return View(products);
+        }
+
+        public IActionResult ActiveList()
+        {
+            List<Product> products = _context.Products
+                .Include(p => p.ProductImages)
+                .Include(p => p.Category)
+                .Include(p => p.Brand)
+                .Where(p => p.IsDeleted == false).ToList();
 
             return View(products);
+        }
+        public IActionResult DeleteList()
+        {
+            List<Product> products = _context.Products
+                .Include(p => p.ProductImages)
+                .Include(p => p.Category)
+                .Include(p => p.Brand)
+                .Where(p => p.IsDeleted == true).ToList();
+
+            return View(products);
+        }
+
+        public IActionResult Undelete(int id)
+        {
+            Product deletedProduct = _context.Products.Find(id);
+            if (deletedProduct == null) return NotFound();
+
+            deletedProduct.IsDeleted = false;
+            deletedProduct.UptadetAt = DateTime.Now;
+            _context.SaveChanges();
+            return RedirectToAction("deletelist");
         }
 
         public IActionResult Create()
@@ -84,15 +115,12 @@ namespace Allup.Areas.Admin.Controllers
 
             if (dbProduct == null) return NotFound();
 
-            ProductImage dbProducImage =  _context.ProductImages.FirstOrDefault(x => x.ProductId == dbProduct.Id);
-
-            _context.Products.Remove(dbProduct);
-
-            _context.ProductImages.Remove(dbProducImage);
+            dbProduct.IsDeleted = true;
+            dbProduct.DeletedAt = DateTime.Now;
 
              _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("deletelist");
 
         }
 
@@ -149,6 +177,7 @@ namespace Allup.Areas.Admin.Controllers
             dbProduct.CategoryId = product.CategoryId;
             dbProduct.BrandId = product.BrandId;
             dbProduct.TagProducts = product.TagProducts;
+            dbProduct.UptadetAt = DateTime.Now;
 
             _context.SaveChanges();
             return RedirectToAction("index");

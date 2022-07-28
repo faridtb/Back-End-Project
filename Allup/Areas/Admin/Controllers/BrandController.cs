@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,6 +83,48 @@ namespace Allup.Areas.Admin.Controllers
             if (dbBrand == null) return NotFound();
 
             return View(dbBrand);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Brand brand)
+        {
+            Brand dbBrand =  _context.Brands.FirstOrDefault(x => x.Id == brand.Id);
+            if (dbBrand == null) return NotFound();
+
+            if (ModelState["Photo"] != null)
+            {
+                if (!brand.Image.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "Wrong format");
+                    return View();
+                }
+                if (brand.Image.ImageSize(8000))
+                {
+                    ModelState.AddModelError("Photo", "OVERsize");
+                    return View();
+                }
+
+
+                string path = Path.Combine(_env.WebRootPath, @"assets\images\brand", dbBrand.ImageUrl);
+                ImageService.DeleteImage(path);
+                dbBrand.ImageUrl = "images/brand/" + brand.Image.SaveImage(_env, @"assets\images\brand");
+            }
+            var brandName = _context.Brands.FirstOrDefault(x => x.Name.ToLower() == brand.Name.ToLower());
+
+            if (brandName != null)
+            {
+                if (dbBrand.Name.ToLower() != brandName.Name.ToLower())
+                {
+                    ModelState.AddModelError("Name", "Model Name is exsist");
+                    return View("Update");
+                }
+            }
+            dbBrand.Name = brand.Name;
+            dbBrand.UptadetAt = DateTime.Now;
+             _context.SaveChangesAsync();
+            return RedirectToAction("show");
         }
     }
 }

@@ -204,8 +204,7 @@
                                                     <th>Stock</th>
                                                     <th>Price</th>
                                                     <th>Created Date</th>
-                                                    <th>Deleted Date</th>
-                                                    <th>Update Date</th>
+                                                    <th>Updated Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -221,15 +220,7 @@
                                                     <td>@item.StockCount</td>
                                                     <td>@item.Price $</td>
                                                     <td style="color:greenyellow">@item.CreatedAt.Value.Date.ToLongDateString()</td>
-                                                    @if (item.DeletedAt != null)
-                                                    {
-                                                        <td style="color:orangered">@item.DeletedAt.Value.Date.ToLongDateString()</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td style="color:dodgerblue">Empty</td>
-                                                    }
-                                                    @if (item.UptadetAt != null)
+                                                    @if (@item.UptadetAt != null)
                                                     {
                                                         <td style="color:yellow">@item.UptadetAt.Value.Date.ToLongDateString()</td>
                                                     }
@@ -237,18 +228,18 @@
                                                     {
                                                         <td style="color:dodgerblue">Empty</td>
                                                     }
-                                                    <td>
-                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="text-muted sr-only">Action</span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" asp-controller="product" asp-action="update" asp-route-id="@item.Id">Edit</a>
-                                                            @if (item.IsDeleted == false)
-                                                            {
-                                                                <a class="dropdown-item" asp-controller="product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                            }
-                                                        </div>
-                                                    </td>
+                                                <td>
+                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" asp-controller="product" asp-action="update" asp-route-id="@item.Id">Edit</a>
+                                                        @if (item.IsDeleted == false)
+                                                        {
+                                                            <a class="dropdown-item" asp-controller="product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                        }
+                                                    </div>
+                                                </td>
                                                 </tr>
                                                 }
                                             </tbody>
