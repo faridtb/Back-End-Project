@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model List<Brand>
 
 <!doctype html>
 <html lang="en">
@@ -202,7 +202,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <h2 class="mb-2 page-title" style="text-align :center">Products Data</h2>
+                        <h2 class="mb-2 page-title" style="text-align :center">Brands Data</h2>
                         <div class="row my-4">
                             <!-- Small table -->
                             <div class="col-md-12">
@@ -215,13 +215,8 @@
                                                     <th>ID</th>
                                                     <th>Name</th>
                                                     <th>Photo</th>
-                                                    <th>Brand</th>
-                                                    <th>Category</th>
-                                                    <th>Stock</th>
-                                                    <th>Price</th>
-                                                    <th>Created Date</th>
+                                                    <th>Updated Date</th>
                                                     <th>Deleted Date</th>
-                                                    <th>Update Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -231,46 +226,18 @@
                                                 <tr>
                                                     <td>@item.Id</td>
                                                     <td>@item.Name</td>
-                                                    <td><img width="100" height="100" src="~/assets/@item.ProductImages.Find(i=>i.IsMain==true).ImageUrl" style="border-radius:50%; border:3px solid #5A54DA" /></td>
-                                                    <td>@item.Brand.Name</td>
-                                                    <td>@item.Category.Name</td>
-                                                    <td>@item.StockCount</td>
-                                                    <td>@item.Price $</td>
-                                                    @if (item.CreatedAt != null)
+                                                    <td><img width="100" height="100" src="~/assets/@item.ImageUrl" style="border-radius:50%; border:3px solid #5A54DA" /></td>
+                                                    @if (@item.CreatedAt != null)
                                                     {
-                                                        <td style="color:greenyellow">@item.CreatedAt.Value.Date.ToLongDateString()</td>
+                                                        <td style="color:yellow">@item.CreatedAt.Value.Date.ToLongDateString()</td>
                                                     }
                                                     else
                                                     {
                                                         <td style="color:dodgerblue">Empty</td>
                                                     }
-                                                    @if (item.DeletedAt != null)
-                                                    {
-                                                        <td style="color:orangered">@item.DeletedAt.Value.Date.ToLongDateString()</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td style="color:dodgerblue">Empty</td>
-                                                    }
-                                                    @if (item.UptadetAt != null)
-                                                    {
-                                                        <td style="color:navajowhite">@item.UptadetAt.Value.Date.ToLongDateString()</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td style="color:dodgerblue">Empty</td>
-                                                    }
+                                                    <td style="color:orangered">@item.DeletedAt.Value.Date.ToLongDateString()</td>
                                                     <td>
-                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="text-muted sr-only">Action</span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" asp-controller="product" asp-action="update" asp-route-id="@item.Id">Edit</a>
-                                                            @if (item.IsDeleted == false)
-                                                            {
-                                                                <a class="dropdown-item" asp-controller="product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                            }
-                                                        </div>
+                                                        <a style="text-decoration:none;color:ghostwhite;" asp-controller="brand" asp-action="undelete" asp-route-id="@item.Id"><span class="fe fe-24 fe-rotate-ccw"></span></a>
                                                     </td>
                                                 </tr>
                                                 }
@@ -424,8 +391,8 @@
             {
                 autoWidth: true,
                 "lengthMenu": [
-                    [16, 32, 64, -1],
-                    [16, 32, 64, "All"]
+                    [8, 16, 32, -1],
+                    [8, 16, 32, "All"]
                 ]
             });
     </script>

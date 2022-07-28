@@ -59,17 +59,17 @@ namespace Allup.Areas.Admin.Controllers
         {
             Product deletedProduct = _context.Products.Find(id);
             if (deletedProduct == null) return NotFound();
-
+            deletedProduct.DeletedAt = null;
             deletedProduct.IsDeleted = false;
-            deletedProduct.UptadetAt = DateTime.Now;
+            deletedProduct.CreatedAt = DateTime.Now;
             _context.SaveChanges();
-            return RedirectToAction("deletelist");
+            return RedirectToAction("index");
         }
 
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(_context.Categories.Where(c => c.Children.Count == 0 || c.ParentId != null).ToList(), "Id", "Name");
-            ViewBag.Brands = new SelectList(_context.Brands.ToList(), "Id", "Name");
+            ViewBag.Categories = new SelectList(_context.Categories.Where(c => c.Children.Count == 0 || c.ParentId != null &&  c.IsDeleted == false).ToList(), "Id", "Name");
+            ViewBag.Brands = new SelectList(_context.Brands.Where(b=>b.IsDeleted==false).ToList(), "Id", "Name");
             ViewBag.Tags = new SelectList(_context.Tags.ToList(), "Id", "Name");
             Product product = new Product();
             return View(product);
@@ -117,10 +117,11 @@ namespace Allup.Areas.Admin.Controllers
 
             dbProduct.IsDeleted = true;
             dbProduct.DeletedAt = DateTime.Now;
+            dbProduct.CreatedAt = null;
 
-             _context.SaveChanges();
+            _context.SaveChanges();
 
-            return RedirectToAction("deletelist");
+            return RedirectToAction("index");
 
         }
 
@@ -165,12 +166,15 @@ namespace Allup.Areas.Admin.Controllers
             }
 
 
-            var existName = _context.Products.Any(p => p.Name.ToLower() == product.Name.ToLower());
+            var existName = _context.Products.FirstOrDefault(x => x.Name.ToLower() == product.Name.ToLower());
 
-            if (existName)
+            if (existName != null)
             {
-                ModelState.AddModelError("Name", "Model Name is exsist");
-                return View("Update");
+                if (dbProduct.Name.ToLower() != existName.Name.ToLower())
+                {
+                    ModelState.AddModelError("Name", "Model Name is exsist");
+                    return View("Update");
+                }
             }
 
             dbProduct.Name = product.Name;

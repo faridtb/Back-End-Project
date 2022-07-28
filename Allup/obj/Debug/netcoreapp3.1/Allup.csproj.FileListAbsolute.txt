@@ -210,3 +210,5 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Brand\Update.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Product\DeleteList.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Product\ActiveList.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Brand\ActiveList.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Brand\DeleteList.cshtml.g.cs

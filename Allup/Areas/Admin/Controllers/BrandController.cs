@@ -32,6 +32,33 @@ namespace Allup.Areas.Admin.Controllers
 
             return View(brands);
         }
+
+        public IActionResult ActiveList()
+        {
+            List<Brand> brands = _context.Brands
+                .Where(p => p.IsDeleted == false).ToList();
+
+            return View(brands);
+        }
+        public IActionResult DeleteList()
+        {
+            List<Brand> brands = _context.Brands
+                .Where(p => p.IsDeleted == true).ToList();
+
+            return View(brands);
+        }
+
+        public IActionResult Undelete(int id)
+        {
+            Brand deletedBrand = _context.Brands.Find(id);
+            if (deletedBrand == null) return NotFound();
+            deletedBrand.DeletedAt = null;
+            deletedBrand.IsDeleted = false;
+            deletedBrand.CreatedAt = DateTime.Now;
+            _context.SaveChanges();
+            return RedirectToAction("index");
+        }
+
         public IActionResult Create()
         {
             Brand brand = new Brand();
@@ -66,10 +93,11 @@ namespace Allup.Areas.Admin.Controllers
 
             if (dbBrand == null) return NotFound();
 
-            _context.Brands.Remove(dbBrand);
+            dbBrand.IsDeleted = true;
+            dbBrand.DeletedAt = DateTime.Now;
+            dbBrand.CreatedAt = null;
 
-             _context.SaveChanges();
-
+            _context.SaveChanges();
             return RedirectToAction("Index");
 
         }
@@ -93,16 +121,16 @@ namespace Allup.Areas.Admin.Controllers
             Brand dbBrand =  _context.Brands.FirstOrDefault(x => x.Id == brand.Id);
             if (dbBrand == null) return NotFound();
 
-            if (ModelState["Photo"] != null)
+            if (ModelState["Image"] != null)
             {
                 if (!brand.Image.IsImage())
                 {
-                    ModelState.AddModelError("Photo", "Wrong format");
+                    ModelState.AddModelError("Image", "Wrong format");
                     return View();
                 }
                 if (brand.Image.ImageSize(8000))
                 {
-                    ModelState.AddModelError("Photo", "OVERsize");
+                    ModelState.AddModelError("Image", "OVERsize");
                     return View();
                 }
 
@@ -123,8 +151,9 @@ namespace Allup.Areas.Admin.Controllers
             }
             dbBrand.Name = brand.Name;
             dbBrand.UptadetAt = DateTime.Now;
-             _context.SaveChangesAsync();
-            return RedirectToAction("show");
+
+             _context.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

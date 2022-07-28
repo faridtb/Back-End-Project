@@ -733,6 +733,95 @@ namespace Allup.DAL
 
             #endregion
 
+            #region Bio
+            builder.Entity<Bio>().HasData(
+               new Bio
+               {
+                   Id = 1,
+                   Contact = "+994(50)568-38-10",
+                   Email = "baliyevfarid@gmail.com",
+                   ImageUrl = "images/logo.png",
+                   Location = "Baku,Nasimi district,4 mkr",
+                   SupportContact = "+994(60)666-66-66",
+                   WorkTime = "Hefte:1-6 gunler - 09:00 ~ 21:00",
+               });
+            #endregion
+
+            #region Tags
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 1,
+                  CreatedAt = DateTime.Now,
+                  Name = "sport"
+              });
+
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 2,
+                  CreatedAt = DateTime.Now,
+                  Name = "classic"
+              });
+
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 3,
+                  CreatedAt = DateTime.Now,
+                  Name = "modern"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 4,
+                  CreatedAt = DateTime.Now,
+                  Name = "technology"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 5,
+                  CreatedAt = DateTime.Now,
+                  Name = "creativ"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 6,
+                  CreatedAt = DateTime.Now,
+                  Name = "health"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 7,
+                  CreatedAt = DateTime.Now,
+                  Name = "interesting"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 8,
+                  CreatedAt = DateTime.Now,
+                  Name = "innovation"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 9,
+                  CreatedAt = DateTime.Now,
+                  Name = "best"
+              });
+            builder.Entity<Tag>().HasData(
+              new Tag
+              {
+                  Id = 10,
+                  CreatedAt = DateTime.Now,
+                  Name = "useful"
+              });
+            #endregion
+
         }
     }
 }

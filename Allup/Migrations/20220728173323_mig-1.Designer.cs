@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Allup.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220726130457_mig-4")]
-    partial class mig4
+    [Migration("20220728173323_mig-1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,25 @@ namespace Allup.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Allup.Models.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("Baskets");
+                });
+
             modelBuilder.Entity("Allup.Models.BasketItem", b =>
                 {
                     b.Property<int>("Id")
@@ -55,13 +74,18 @@ namespace Allup.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductCount")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
 
                     b.HasIndex("ProductId");
 
@@ -96,6 +120,18 @@ namespace Allup.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Bios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Contact = "+994(50)568-38-10",
+                            Email = "baliyevfarid@gmail.com",
+                            ImageUrl = "images/logo.png",
+                            Location = "Baku,Nasimi district,4 mkr",
+                            SupportContact = "+994(60)666-66-66",
+                            WorkTime = "Hefte:1-6 gunler - 09:00 ~ 21:00"
+                        });
                 });
 
             modelBuilder.Entity("Allup.Models.Blog", b =>
@@ -127,7 +163,7 @@ namespace Allup.Migrations
                             Id = 1,
                             Content = "Insana pul geldikce onu nece mehv etmeyi baresinde maraqli ideyalara sahib olmaga bashlayir..",
                             ImageUrl = "images/blog-1.jpg",
-                            Time = new DateTime(2022, 7, 26, 17, 4, 56, 787, DateTimeKind.Local).AddTicks(4932),
+                            Time = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(7169),
                             Title = "Bu gun ne alim ?"
                         },
                         new
@@ -135,7 +171,7 @@ namespace Allup.Migrations
                             Id = 2,
                             Content = "Insana pul geldi ve onu nece mehv etmeyi baresinde maraqli ideyalara sahib olmaga bashladi...",
                             ImageUrl = "images/blog-2.jpg",
-                            Time = new DateTime(2022, 7, 26, 17, 4, 56, 787, DateTimeKind.Local).AddTicks(6014),
+                            Time = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(7757),
                             Title = "Dunen ne aldim ?"
                         },
                         new
@@ -143,7 +179,7 @@ namespace Allup.Migrations
                             Id = 3,
                             Content = "Insana pul gelerse onu nece mehv etmeyi baresinde maraqli ideyalara sahib olmaga bashlayacaq..",
                             ImageUrl = "images/blog-3.jpg",
-                            Time = new DateTime(2022, 7, 26, 17, 4, 56, 787, DateTimeKind.Local).AddTicks(6068),
+                            Time = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(7796),
                             Title = "Sabah ne alim ?"
                         },
                         new
@@ -151,7 +187,7 @@ namespace Allup.Migrations
                             Id = 4,
                             Content = "ARtiq blog ve onun contenti....",
                             ImageUrl = "images/blog-4.jpg",
-                            Time = new DateTime(2022, 7, 26, 17, 4, 56, 787, DateTimeKind.Local).AddTicks(6097),
+                            Time = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(7817),
                             Title = "Bu umumiyyetle artiq blogdur evvelkilere baxin"
                         });
                 });
@@ -189,7 +225,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 780, DateTimeKind.Local).AddTicks(8128),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 594, DateTimeKind.Local).AddTicks(3391),
                             ImageUrl = "images/brand/brand-1.jpg",
                             IsDeleted = false,
                             Name = "Adidas"
@@ -197,7 +233,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2109),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(1820),
                             ImageUrl = "images/brand/brand-2.jpg",
                             IsDeleted = false,
                             Name = "Samsung"
@@ -205,7 +241,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2474),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(1967),
                             ImageUrl = "images/brand/brand-3.jpg",
                             IsDeleted = false,
                             Name = "Asus"
@@ -213,7 +249,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2515),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(1990),
                             ImageUrl = "images/brand/brand-4.jpg",
                             IsDeleted = false,
                             Name = "Philips"
@@ -221,7 +257,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2547),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(2011),
                             ImageUrl = "images/brand/brand-5.jpg",
                             IsDeleted = false,
                             Name = "Sony"
@@ -229,7 +265,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2586),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(2036),
                             ImageUrl = "images/brand/brand-6.jpg",
                             IsDeleted = false,
                             Name = "Xiaomi"
@@ -237,7 +273,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2616),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(2056),
                             ImageUrl = "images/brand/brand-1.jpg",
                             IsDeleted = false,
                             Name = "Apple"
@@ -245,7 +281,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2645),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(2076),
                             ImageUrl = "images/brand/brand-2.jpg",
                             IsDeleted = false,
                             Name = "Gucci"
@@ -253,7 +289,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2674),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(2095),
                             ImageUrl = "images/brand/brand-4.jpg",
                             IsDeleted = false,
                             Name = "Pegasus"
@@ -261,7 +297,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 784, DateTimeKind.Local).AddTicks(2706),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(2116),
                             ImageUrl = "images/brand/brand-3.jpg",
                             IsDeleted = false,
                             Name = "Logitech"
@@ -298,13 +334,15 @@ namespace Allup.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3221),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7029),
                             ImageUrl = "images/category-1.jpg",
                             IsDeleted = false,
                             Name = "Laptop",
@@ -313,7 +351,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3540),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7258),
                             ImageUrl = "images/category-2.jpg",
                             IsDeleted = false,
                             Name = "Computer"
@@ -321,7 +359,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3576),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7286),
                             ImageUrl = "images/category-3.jpg",
                             IsDeleted = false,
                             Name = "Smartphone"
@@ -329,7 +367,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3606),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7360),
                             ImageUrl = "images/category-4.jpg",
                             IsDeleted = false,
                             Name = "Game Consoles"
@@ -337,7 +375,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3636),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7383),
                             ImageUrl = "images/category-5.jpg",
                             IsDeleted = false,
                             Name = "Bottoms"
@@ -345,7 +383,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3669),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7407),
                             ImageUrl = "images/category-6.jpg",
                             IsDeleted = false,
                             Name = "Tops & Sets"
@@ -353,7 +391,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3698),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7428),
                             ImageUrl = "images/category-7.jpg",
                             IsDeleted = false,
                             Name = "Audio & Video"
@@ -361,7 +399,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3741),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7459),
                             ImageUrl = "images/category-10.jpg",
                             IsDeleted = false,
                             Name = "Camera",
@@ -370,7 +408,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3773),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7481),
                             ImageUrl = "images/category-9.jpg",
                             IsDeleted = false,
                             Name = "Household"
@@ -378,7 +416,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3874),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7503),
                             ImageUrl = "images/category-8.jpg",
                             IsDeleted = false,
                             Name = "Accessories"
@@ -386,7 +424,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3904),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7523),
                             ImageUrl = "images/category-11.jpg",
                             IsDeleted = false,
                             Name = "Michrophone",
@@ -395,7 +433,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3934),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7544),
                             ImageUrl = "images/category-12.jpg",
                             IsDeleted = false,
                             Name = "Video Games",
@@ -404,7 +442,7 @@ namespace Allup.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(3962),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(7564),
                             ImageUrl = "images/category-1.jpg",
                             IsDeleted = false,
                             Name = "Technologics"
@@ -455,7 +493,10 @@ namespace Allup.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -463,6 +504,9 @@ namespace Allup.Migrations
 
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("UptadetAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
@@ -565,7 +609,7 @@ namespace Allup.Migrations
                             BestSeller = false,
                             BrandId = 10,
                             CategoryId = 4,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 785, DateTimeKind.Local).AddTicks(4668),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 596, DateTimeKind.Local).AddTicks(8041),
                             DiscountPrice = 30.0,
                             InStock = true,
                             IsDeleted = false,
@@ -582,7 +626,7 @@ namespace Allup.Migrations
                             BestSeller = true,
                             BrandId = 5,
                             CategoryId = 10,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2544),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1152),
                             DiscountPrice = 30.0,
                             InStock = true,
                             IsDeleted = false,
@@ -599,7 +643,7 @@ namespace Allup.Migrations
                             BestSeller = false,
                             BrandId = 4,
                             CategoryId = 10,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2738),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1341),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -616,7 +660,7 @@ namespace Allup.Migrations
                             BestSeller = true,
                             BrandId = 2,
                             CategoryId = 7,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2774),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1366),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -633,7 +677,7 @@ namespace Allup.Migrations
                             BestSeller = false,
                             BrandId = 2,
                             CategoryId = 13,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2807),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1388),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -650,7 +694,7 @@ namespace Allup.Migrations
                             BestSeller = true,
                             BrandId = 1,
                             CategoryId = 10,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2845),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1414),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -667,7 +711,7 @@ namespace Allup.Migrations
                             BestSeller = false,
                             BrandId = 3,
                             CategoryId = 13,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2879),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1437),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -684,7 +728,7 @@ namespace Allup.Migrations
                             BestSeller = false,
                             BrandId = 6,
                             CategoryId = 3,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2911),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1459),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -701,7 +745,7 @@ namespace Allup.Migrations
                             BestSeller = true,
                             BrandId = 7,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2022, 7, 26, 17, 4, 56, 786, DateTimeKind.Local).AddTicks(2944),
+                            CreatedAt = new DateTime(2022, 7, 28, 21, 33, 22, 597, DateTimeKind.Local).AddTicks(1536),
                             DiscountPrice = 0.0,
                             InStock = true,
                             IsDeleted = false,
@@ -1109,10 +1153,12 @@ namespace Allup.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -1127,10 +1173,12 @@ namespace Allup.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -1151,20 +1199,202 @@ namespace Allup.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Allup.Models.WishList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("WishLists");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Allup.Models.Basket", b =>
+                {
+                    b.HasOne("Allup.Models.User", "User")
+                        .WithOne("basket")
+                        .HasForeignKey("Allup.Models.Basket", "UserId");
                 });
 
             modelBuilder.Entity("Allup.Models.BasketItem", b =>
                 {
-                    b.HasOne("Allup.Models.Product", null)
+                    b.HasOne("Allup.Models.Basket", "Basket")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Allup.Models.Product", "Product")
                         .WithMany("BasketItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Allup.Models.Category", b =>
+                {
+                    b.HasOne("Allup.Models.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Allup.Models.Comment", b =>
@@ -1198,7 +1428,7 @@ namespace Allup.Migrations
                         .IsRequired();
 
                     b.HasOne("Allup.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1242,6 +1472,70 @@ namespace Allup.Migrations
                     b.HasOne("Allup.Models.Product", null)
                         .WithMany("TagProducts")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Allup.Models.WishList", b =>
+                {
+                    b.HasOne("Allup.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Allup.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Allup.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Allup.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Allup.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Allup.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

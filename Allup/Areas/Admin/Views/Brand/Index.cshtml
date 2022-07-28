@@ -84,18 +84,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="product" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Delete</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="product" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Update</span>
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="ActiveList">
+                                    <span class="ml-1 item-text">Get Active Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="DeleteList">
+                                    <span class="ml-1 item-text">Get Deleted Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link pl-3" asp-controller="product" asp-action="index">
-                                    <span class="ml-1 item-text">Get All</span>
+                                    <span class="ml-1 item-text">Get All Products</span>
                                 </a>
                             </li>
                         </ul>
@@ -112,18 +122,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Delete</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Update</span>
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="ActiveList">
+                                    <span class="ml-1 item-text">Get Active Categories</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="DeleteList">
+                                    <span class="ml-1 item-text">Get Deleted Categories</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link pl-3" asp-controller="category" asp-action="index">
-                                    <span class="ml-1 item-text">Get All</span>
+                                    <span class="ml-1 item-text">Get All Categories</span>
                                 </a>
                             </li>
                         </ul>
@@ -138,13 +158,19 @@
                                 <a class="nav-link pl-3" asp-controller="brand" asp-action="create"><span class="ml-1 item-text">Create</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Delete</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="ActiveList"><span class="ml-1 item-text">Delete</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Update</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="ActiveList"><span class="ml-1 item-text">Update</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Get All</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="ActiveList"><span class="ml-1 item-text">Get Active Brands</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="DeleteList"><span class="ml-1 item-text">Get Deleted Brands</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Get All Brands</span></a>
                             </li>
                         </ul>
                     </li>
@@ -190,27 +216,55 @@
                                                     <th>Name</th>
                                                     <th>Photo</th>
                                                     <th>Created Date</th>
+                                                    <th>Deleted Date</th>
+                                                    <th>Update Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (var item in Model)
                                                 {
-                                                    <tr>
-                                                        <td>@item.Id</td>
-                                                        <td>@item.Name</td>
-                                                        <td><img width="100" height="100" src="~/assets/@item.ImageUrl" style="border-radius:50%; border:3px solid #5A54DA" /></td>
-                                                        <td>@item.CreatedAt.Value.Date.ToLongDateString()</td>
-                                                        <td>
-                                                            <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <span class="text-muted sr-only">Action</span>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" asp-controller="brand" asp-action="update" asp-route-id="@item.Id">Edit</a>
+                                                <tr>
+                                                    <td>@item.Id</td>
+                                                    <td>@item.Name</td>
+                                                    <td><img width="100" height="100" src="~/assets/@item.ImageUrl" style="border-radius:50%; border:3px solid #5A54DA" /></td>
+                                                    @if (item.CreatedAt != null)
+                                                    {
+                                                        <td style="color:greenyellow">@item.CreatedAt.Value.Date.ToLongDateString()</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="color:dodgerblue">Empty</td>
+                                                    }
+                                                    @if (item.DeletedAt != null)
+                                                    {
+                                                        <td style="color:orangered">@item.DeletedAt.Value.Date.ToLongDateString()</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="color:dodgerblue">Empty</td>
+                                                    }
+                                                    @if (item.UptadetAt != null)
+                                                    {
+                                                        <td style="color:navajowhite">@item.UptadetAt.Value.Date.ToLongDateString()</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="color:dodgerblue">Empty</td>
+                                                    }
+                                                    <td>
+                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="text-muted sr-only">Action</span>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" asp-controller="brand" asp-action="update" asp-route-id="@item.Id">Edit</a>
+                                                            @if (item.IsDeleted == false)
+                                                            {
                                                                 <a class="dropdown-item" asp-controller="brand" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            }
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                                 }
                                             </tbody>
                                         </table>

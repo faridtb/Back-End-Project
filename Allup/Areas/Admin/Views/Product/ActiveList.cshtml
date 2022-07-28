@@ -79,32 +79,32 @@
                         </a>
                         <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-action="create">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="create">
                                     <span class="ml-1 item-text">Create</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Delete</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Update</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-action="ActiveList">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Get Active Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-action="DeleteList">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="DeleteList">
                                     <span class="ml-1 item-text">Get Deleted Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="product" asp-action="index">
                                     <span class="ml-1 item-text">Get All Products</span>
                                 </a>
                             </li>
@@ -122,18 +122,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Delete</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="category" asp-action="index">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="ActiveList">
                                     <span class="ml-1 item-text">Update</span>
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="ActiveList">
+                                    <span class="ml-1 item-text">Get Active Categories</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="category" asp-action="DeleteList">
+                                    <span class="ml-1 item-text">Get Deleted Categories</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link pl-3" asp-controller="category" asp-action="index">
-                                    <span class="ml-1 item-text">Get All</span>
+                                    <span class="ml-1 item-text">Get All Categories</span>
                                 </a>
                             </li>
                         </ul>
@@ -148,13 +158,19 @@
                                 <a class="nav-link pl-3" asp-controller="brand" asp-action="create"><span class="ml-1 item-text">Create</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Delete</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="ActiveList"><span class="ml-1 item-text">Delete</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Update</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="ActiveList"><span class="ml-1 item-text">Update</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Get All</span></a>
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="ActiveList"><span class="ml-1 item-text">Get Active Brands</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="DeleteList"><span class="ml-1 item-text">Get Deleted Brands</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-3" asp-controller="brand" asp-action="index"><span class="ml-1 item-text">Get All Brands</span></a>
                             </li>
                         </ul>
                     </li>
@@ -219,7 +235,14 @@
                                                     <td>@item.Category.Name</td>
                                                     <td>@item.StockCount</td>
                                                     <td>@item.Price $</td>
-                                                    <td style="color:greenyellow">@item.CreatedAt.Value.Date.ToLongDateString()</td>
+                                                    @if (@item.CreatedAt != null)
+                                                    {
+                                                        <td style="color:greenyellow">@item.CreatedAt.Value.Date.ToLongDateString()</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="color:dodgerblue">Empty</td>
+                                                    }
                                                     @if (@item.UptadetAt != null)
                                                     {
                                                         <td style="color:yellow">@item.UptadetAt.Value.Date.ToLongDateString()</td>
@@ -228,18 +251,18 @@
                                                     {
                                                         <td style="color:dodgerblue">Empty</td>
                                                     }
-                                                <td>
-                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" asp-controller="product" asp-action="update" asp-route-id="@item.Id">Edit</a>
-                                                        @if (item.IsDeleted == false)
-                                                        {
-                                                            <a class="dropdown-item" asp-controller="product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                        }
-                                                    </div>
-                                                </td>
+                                                    <td>
+                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="text-muted sr-only">Action</span>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" asp-controller="product" asp-action="update" asp-route-id="@item.Id">Edit</a>
+                                                            @if (item.IsDeleted == false)
+                                                            {
+                                                                <a class="dropdown-item" asp-controller="product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                            }
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 }
                                             </tbody>
