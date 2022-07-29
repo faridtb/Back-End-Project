@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model List<Category>
 <main role="main" class="main-content">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -16,10 +16,6 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Photo</th>
-                                            <th>Brand</th>
-                                            <th>Category</th>
-                                            <th>Stock</th>
-                                            <th>Price</th>
                                             <th>Created Date</th>
                                             <th>Delete Date</th>
                                             <th>Action</th>
@@ -31,11 +27,7 @@
                                             <tr>
                                                 <td>@item.Id</td>
                                                 <td>@item.Name</td>
-                                                <td><img width="100" height="100" src="~/assets/@item.ProductImages.Find(i=>i.IsMain==true).ImageUrl" style="border-radius:50%; border:3px solid #5A54DA" /></td>
-                                                <td>@item.Brand.Name</td>
-                                                <td>@item.Category.Name</td>
-                                                <td>@item.StockCount</td>
-                                                <td>@item.Price $</td>
+                                                <td><img width="100" height="100" src="~/assets/@item.Image" style="border-radius:50%; border:3px solid #5A54DA" /></td>
                                                 @if (item.UptadetAt != null)
                                                 {
                                                     <td style="color:navajowhite">@item.UptadetAt.Value.Date.ToLongDateString()</td>
@@ -46,7 +38,7 @@
                                                 }
                                                 <td style="color:orangered">@item.DeletedAt.Value.Date.ToLongDateString()</td>
                                                 <td>
-                                                    <a style="text-decoration:none;color:ghostwhite;" asp-controller="product" asp-action="undelete" asp-route-id="@item.Id"><span class="fe fe-24 fe-rotate-ccw"></span></a>
+                                                    <a style="text-decoration:none;color:ghostwhite;" asp-controller="category" asp-action="undelete" asp-route-id="@item.Id"><span class="fe fe-24 fe-rotate-ccw"></span></a>
                                                 </td>
                                             </tr>
                                         }
@@ -59,4 +51,4 @@
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
-</main> <!-- main -->
+</main> 

@@ -1,6 +1,4 @@
-﻿
-
-@model Category
+﻿@model Category
 
 
 <main role="main" class="main-content">
@@ -8,6 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <form method="post" enctype="multipart/form-data">
+                    <input hidden name="Id" value="@Model.Id" />
                     <h2 style="text-align:center;" class="page-title">Product Create Form</h2>
                     <div class="card shadow mb-4">
                         <div class="card-header" style="text-align:center">
@@ -57,5 +56,3 @@
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
 </main>
-
-

@@ -65,7 +65,9 @@ namespace Allup.Controllers
 
             await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
 
-            Basket basket = _context.Baskets
+
+
+            Basket basket = _context.Baskets    
                 .Include(b => b.BasketItems)
                 .ThenInclude(b => b.Product)
                 .ThenInclude(b => b.ProductImages)

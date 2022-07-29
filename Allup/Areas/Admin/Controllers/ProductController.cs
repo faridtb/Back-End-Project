@@ -181,6 +181,8 @@ namespace Allup.Areas.Admin.Controllers
             dbProduct.CategoryId = product.CategoryId;
             dbProduct.BrandId = product.BrandId;
             dbProduct.TagProducts = product.TagProducts;
+            dbProduct.Price = product.Price;
+            dbProduct.StockCount = product.StockCount;
             dbProduct.UptadetAt = DateTime.Now;
 
             _context.SaveChanges();

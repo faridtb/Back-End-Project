@@ -77,6 +77,8 @@ namespace Allup.Areas.Admin.Controllers
 			Category newCategory = new Category
 			{
 				Name = category.Name,
+				Children =category.Children,
+				ParentId = category.ParentId,
 				CreatedAt = DateTime.Now,
 				ImageUrl = "images/" + category.Image.SaveImage(_env, @"assets\images"),
 			};
@@ -103,6 +105,7 @@ namespace Allup.Areas.Admin.Controllers
 			return RedirectToAction("Index");
 
 		}
+
 		public IActionResult Update(int? id)
 		{
 			if (id == null) return NotFound();
@@ -110,6 +113,11 @@ namespace Allup.Areas.Admin.Controllers
 			Category dbCategory = _context.Categories.FirstOrDefault(b => b.Id == id);
 
 			if (dbCategory == null) return NotFound();
+
+			var dbParents = _context.Categories.Where(x => x.ParentId == null).ToList();
+			var dbChildren = _context.Categories.Where(x => x.ParentId != null).ToList();
+			ViewBag.Parents = new SelectList(dbParents, "Id", "Name");
+			ViewBag.Children = new SelectList(dbChildren, "Id", "Name");
 
 			return View(dbCategory);
 		}
@@ -135,9 +143,9 @@ namespace Allup.Areas.Admin.Controllers
 				}
 
 
-				string path = Path.Combine(_env.WebRootPath, @"assets\images\category", dbCategory.ImageUrl);
+				string path = Path.Combine(_env.WebRootPath, @"assets\images\", dbCategory.ImageUrl);
 				ImageService.DeleteImage(path);
-				dbCategory.ImageUrl = "images/category/" + category.Image.SaveImage(_env, @"assets\images\category");
+				dbCategory.ImageUrl = "images/" + category.Image.SaveImage(_env, @"assets\images\");
 			}
 			var catName = _context.Brands.FirstOrDefault(x => x.Name.ToLower() == category.Name.ToLower());
 
