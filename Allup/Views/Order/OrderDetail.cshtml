@@ -20,7 +20,7 @@
                                 <td><img src="~/assets/@item.Product.ProductImages.Find(i=>i.IsMain==true).ImageUrl" style="width: 70px; height: 70px;"></td>
                                 <td style="padding-top: 30px;">@item.Product.Name</td>
                                 <td style="padding-top: 30px;">$@item.ProductPrice</td>
-                                <td style="padding-top: 30px;">$@item.ProductCount</td>
+                                <td style="padding-top: 30px;">@item.ProductCount</td>
                                 <td style="padding: 30px;">$@item.Total</td>
                             </tr>
                         }
@@ -30,9 +30,9 @@
                     <span style="margin-right:5px;color:dodgerblue">Total:</span>
                     <span style="color:dimgrey">$@Model.TotalPrice</span>
                 </div>
-            </div>
-            <div class="checkout-btn" style="display:flex;margin:15px; justify-content:center;align-items:center;flex-direction:row;">
-                <a asp-controller="order" asp-action="orders" class="main-btn main-btn-2">Back to Orders</a>
+                <div class="checkout-btn" style="display:flex;margin:15px; justify-content:center;align-items:center;flex-direction:row;">
+                    <a asp-controller="order" asp-action="orders" class="main-btn main-btn-2">Back to Orders</a>
+                </div>
             </div>
         </div>
     </div>

@@ -76,7 +76,6 @@ namespace Allup.Controllers
                 basket = new Basket() { UserId = user.Id };
                 _context.Add(basket);
                 _context.SaveChanges();
-                return RedirectToAction("index", "shop");
             }
 
 

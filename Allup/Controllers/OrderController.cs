@@ -31,7 +31,6 @@ namespace Allup.Controllers
 
             ViewBag.BasketItems = basket.BasketItems.ToList();
 
-
             return View(order);
         }
 

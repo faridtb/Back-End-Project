@@ -1,8 +1,5 @@
 ﻿@model Order 
 
-@{ 
-    double totalPrice = 0;
-}
 <section class="checkout-area pt-10">
     <div class="container-fluid custom-container">
         <div class="row">
@@ -134,21 +131,22 @@
                                     <p class="total-amount">€@item.Product.Price</p>
                                 </div>
                                 <div class="col-2">
-                                    @(totalPrice += item.ProductCount * item.Product.Price)
+                                    @(item.Total = item.ProductCount * item.Product.Price)
                                 </div>
+                                  <input hidden value="@(Model.TotalPrice += item.Total)" />
                             </div>
                             }
                         </ul>
                         <div class="checkout-total-sub">
                             <p class="total-value">Sub Total</p>
-                            <p class="total-amount">€@totalPrice</p>
+                            <p class="total-amount">$@Model.TotalPrice</p>
                         </div>
                         <div class="checkout-total-sub">
                             <p class="total-value">Shipping Fee </p>
-                            <p class="total-amount">€@(totalPrice*0.1)</p>
+                            <p class="total-amount">$@String.Format("{0:0.00}", (Model.TotalPrice * 0.1))</p>
                             
                         </div>
-                        <h4 class="title mt-15">Product  <span>€@String.Format("{0:0.00}", (totalPrice * 1.1))</span></h4>
+                        <h4 class="title mt-15">Product  <span>$@String.Format("{0:0.00}", (Model.TotalPrice * 1.1))</span></h4>
                     </div>
                 </div>
             </div>

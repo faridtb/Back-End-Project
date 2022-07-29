@@ -66,12 +66,30 @@
         <div class="container-fluid custom-container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="header-logo-contact d-flex  ">
-                        <div class="desktop-logo">
+                    <div class="header-logo-contact d-flex" style="flex-direction:column;">
+                        <span class="desktop-logo">
                             <a asp-controller="home" asp-action="index">
                                 <img src="~/assets/@Model.ImageUrl" alt="Logo">
                             </a>
-                        </div> <!-- desktop logo -->
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span style="margin-left:60px;position:relative">
+                                    <a asp-controller="order" asp-action="orders" style="color:#bd2130">
+                                        <img width="30" height="35" src="~/assets/images/myorders.png" alt="Logo">
+                                        <span style="position:relative;right:10px;top:-20px;color:white;border-radius:50%;width:18px;height:18px;background-color:#e52e06;text-align:center;font-size:11px;">@ViewBag.OrderCount</span>
+                                    </a>
+                                </span>
+                            }
+                            else 
+                            { 
+                                <span style="color:#bd2130;margin-left:60px;">
+                                    <a asp-controller="account" asp-action="login" style="color:#bd2130">
+                                        <img width="30" height="35" src="~/assets/images/myorders.png" alt="Logo">
+                                        <span style="position:relative;right:10px;top:-20px;color:#e52e06;;border-radius:50%;width:18px;height:18px;text-align:center;font-size:12px;font-weight:bold;">@ViewBag.OrderCount</span>
+                                    </a>
+                                </span>
+                            }
+                            </span>                   
                     </div>
                 </div>
                 <div class="col-lg-9">
