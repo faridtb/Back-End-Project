@@ -34,6 +34,7 @@ namespace Allup.DAL
         public DbSet<Comment> Comments { get; set; }
         public DbSet<WishList> WishLists { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Subscription> Subscribes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

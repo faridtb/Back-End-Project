@@ -19,7 +19,7 @@ namespace Allup.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Category> categories = _context.Categories.ToList();
+            var categories = _context.Categories.ToList();
 
             return View(categories);
         }

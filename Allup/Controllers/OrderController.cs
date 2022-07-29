@@ -60,7 +60,7 @@ namespace Allup.Controllers
             newOrder.Surname = order.Surname;
             newOrder.Phone = order.Phone;
             newOrder.UserId = userId;
-            newOrder.OrderStatus = OrderStatus.Pending;
+            newOrder.OrderStatus = OrderStatus.New;
             newOrder.PaymantMethod = radio;
 
 

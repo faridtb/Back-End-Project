@@ -9,8 +9,8 @@
                     <p>allup is a powerful eCommerce HTML Template</p>
 
                     <div class="newsletter-forn">
-                        <form action="#">
-                            <input type="text" placeholder="Your Email address">
+                        <form asp-controller="Subscribe" asp-action="Subscribe" method="post">
+                            <input asp-for="Email" placeholder="Your Email address">
                             <button class="main-btn">Subscribe</button>
                         </form>
                     </div>

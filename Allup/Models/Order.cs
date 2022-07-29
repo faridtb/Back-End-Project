@@ -35,9 +35,10 @@ namespace Allup.Models
 
     public enum OrderStatus
     {
-        InBasket,
-        Pending,
-        Shipped,
-
+        New,
+        Delivering,
+        Completed,
+        Closed,
+        Canceled,
     }
 }

@@ -215,3 +215,4 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\scopedcss\bundle\Allup.styles.css
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Order\Orders.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Order\OrderDetail.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Order\Index.cshtml.g.cs

@@ -18,7 +18,7 @@ namespace Allup.Controllers
         }
 
         [HttpPost]
-        public IActionResult Subscribe([FromForm] Subscription subscription)
+        public IActionResult Subscribe(Subscription subscription,string returnUrl)
         {
 
             Subscription newSubs = new Subscription();
@@ -28,7 +28,7 @@ namespace Allup.Controllers
             _context.Add(newSubs);
             _context.SaveChanges();
 
-            return Ok();
+            return RedirectToAction("index", "home");
         }
 
     }
