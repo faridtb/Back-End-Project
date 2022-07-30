@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SelectPdf;
 using System;
 using System.IO;
 using System.Linq;
@@ -105,11 +106,14 @@ namespace Allup.Controllers
                 _context.BasketItems.Remove(item);
             }
 
-            EmailService emailService = new EmailService(_config.GetSection("ConfirmationParams:Email").Value, _config.GetSection("ConfirmationParams:Password").Value);
-            var emailResult = emailService.SendEmail(user.Email);
-
-
             _context.SaveChanges();
+
+            EmailService emailService = new EmailService(_config.GetSection("ConfirmationParams:Email").Value, _config.GetSection("ConfirmationParams:Password").Value);
+
+            emailService.SendEmail(user.Email, "invoice-send", $"Customer:{newOrder.FirstName}", SendInovoice(newOrder.Id), $"{newOrder.InvoiceNo}.pdf");
+
+
+
             return RedirectToAction("index", "home");
         }
 
@@ -143,30 +147,26 @@ namespace Allup.Controllers
             return View(order);
         }
 
-        //[HttpPost]
-        //public IActionResult Invoice()
-        //{
-
-        //    HtmlToPdfConverter converter = new HtmlToPdfConverter();
-
-        //    WebKitConverterSettings settings = new WebKitConverterSettings();
-        //    settings.WebKitPath = Path.Combine(_hosting.ContentRootPath, "QtBinariesWindows");
-        //    converter.ConverterSettings = settings;
-
-        //    PdfDocument document = converter.Convert("https://localhost/convert-html-to-pdf/invoice");
-
-        //    MemoryStream ms = new MemoryStream();
-        //    document.Save(ms);
-        //    document.Close(true);
-
-        //    ms.Position = 0;
+       public byte[] SendInovoice(int id)
+        {
+            var desktopView = new HtmlToPdf();
+            desktopView.Options.WebPageWidth = 1024;
 
 
-        //    FileStreamResult fileStreamResult = new FileStreamResult(ms, "application/pdf");
-        //    fileStreamResult.FileDownloadName = $"Invoice.pdf";
+            var pdf = desktopView.ConvertUrl($"https://localhost:44362/order/invoice/{id}");
+            var pdfBytes = pdf.Save();
 
-        //    return fileStreamResult;
-        //    // return View(order);
-        //}
+
+
+            using (var streamWriter = new StreamWriter($@"C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\wwwroot\Pdfs\invoice({id}).pdf"))
+            {
+                 streamWriter.BaseStream.WriteAsync(pdfBytes, 0, pdfBytes.Length);
+            }
+
+
+            return pdfBytes;
+        }
+
+
     }
 }

@@ -70,7 +70,10 @@
                                         <div class="product-image">
                                             <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
                                                 <img class="first-image" asp-action="detail" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
-                                                <img class="second-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == false).ImageUrl" alt="product">
+                                                @if (item.ProductImages.Find(i => i.IsMain == false) != null)
+                                                {
+                                                    <img class="second-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == false ).ImageUrl" alt="product">
+                                                }
                                             </a>
                                             <ul class="product-meta">
                                                 <li><a asp-controller="dbbasket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>

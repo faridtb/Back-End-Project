@@ -221,3 +221,5 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\ActiveList.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\DeleteList.cshtml.g.cs
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Order\Invoice.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\Select.Html.dep
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\Select.HtmlToPdf.dll

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -18,15 +19,16 @@ namespace Allup.Extentions
         }
 
 
-        public bool SendEmail(string UserEmail,string content = null)
+        public bool SendEmail(string UserEmail, string subject, string content, byte[] bytes = null,string filename = null)
         {
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress(_privateEmail);
             mailMessage.To.Add(new MailAddress(UserEmail));
 
-            mailMessage.Subject = "Invoice";
+            mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = content;
+            mailMessage.Attachments.Add(new Attachment(new MemoryStream(bytes), filename));
 
             SmtpClient client = new SmtpClient();
             client.Credentials = new System.Net.NetworkCredential(_privateEmail, _privatePassword);
