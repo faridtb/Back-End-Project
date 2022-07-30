@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title" style="text-align :center">Products Data</h2>
+                <h2 class="mb-2 page-title" style="text-align :center">Deleted Categories</h2>
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
@@ -27,7 +27,7 @@
                                             <tr>
                                                 <td>@item.Id</td>
                                                 <td>@item.Name</td>
-                                                <td><img width="100" height="100" src="~/assets/@item.Image" style="border-radius:50%; border:3px solid #5A54DA" /></td>
+                                                <td><img width="100" height="100" src="~/assets/@item.ImageUrl" style="border-radius:50%; border:3px solid #5A54DA" /></td>
                                                 @if (item.UptadetAt != null)
                                                 {
                                                     <td style="color:navajowhite">@item.UptadetAt.Value.Date.ToLongDateString()</td>

@@ -90,22 +90,34 @@ namespace Allup.Areas.Admin.Controllers
                 CreatedAt = DateTime.Now,
                 Price = product.Price,
                 StockCount = product.StockCount,
+                IsDeleted = product.IsDeleted,
+                IsFeatured = product.IsFeatured,
+                NewArrival = product.NewArrival
+                
             };
-            List<ProductImage> productImages = new List<ProductImage>();
-            ProductImage newproductImage = new ProductImage
-            {
-                ImageUrl = "images/" + product.Image.SaveImage(_env, @"assets\images"),
-                ProductId = newProduct.Id,
-                IsMain = true
-            };
-
-            productImages.Add(newproductImage);
-            newProduct.ProductImages = productImages;
             _context.Products.Add(newProduct);
+            _context.SaveChanges();
+
+
+            foreach (var item in product.Images)
+            {
+                ProductImage newproductImage = new ProductImage
+                {
+                    ImageUrl = "images/" + item.SaveImage(_env, @"assets\images"),
+                    ProductId = newProduct.Id,
+                };
+                newproductImage.IsMain = product.Images[0] == item ? true : false;
+
+                _context.ProductImages.Add(newproductImage);
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
+
+
+
 
         public IActionResult Delete(int? id)
         {
@@ -146,23 +158,26 @@ namespace Allup.Areas.Admin.Controllers
             Product dbProduct = _context.Products.Include(p=>p.ProductImages).FirstOrDefault(b => b.Id == product.Id);
             if (dbProduct == null) return NotFound();
 
-            if (ModelState["Image"] != null)
+            if (product.Images != null)
             {
-                if (!product.Image.IsImage())
+                foreach (var item in product.Images)
                 {
-                    ModelState.AddModelError("Image", "Wrong Fomrat");
-                    return View();
-                }
-                if (product.Image.ImageSize(8000))
-                {
-                    ModelState.AddModelError("Image", "OVERsize");
-                    return View();
-                }
+                    if (!item.IsImage())
+                    {
+                        ModelState.AddModelError("Image", "Wrong Fomrat");
+                        return View();
+                    }
+                    if (item.ImageSize(8000))
+                    {
+                        ModelState.AddModelError("Image", "OVERsize");
+                        return View();
+                    }
 
 
-                string patsh = Path.Combine(_env.WebRootPath, @"assets\images\product", dbProduct.ProductImages.Find(i => i.IsMain == true).ImageUrl).ToString();
-                ImageService.DeleteImage(patsh);
-                dbProduct.ProductImages.Find(i => i.IsMain == true).ImageUrl = "images/product/" + product.Image.SaveImage(_env, @"assets\images\product");
+                    string patsh = Path.Combine(_env.WebRootPath, @"assets\images\product", dbProduct.ProductImages.Find(i => i.IsMain == true).ImageUrl).ToString();
+                    ImageService.DeleteImage(patsh);
+                    dbProduct.ProductImages.Find(i => i.IsMain == true).ImageUrl = "images/product/" + item.SaveImage(_env, @"assets\images\product");
+                }
             }
 
 

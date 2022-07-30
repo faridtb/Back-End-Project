@@ -111,8 +111,11 @@
                                     <div class="col-sm-5 col-xl-3">
                                         <div class="product-image">
                                             <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
-                                                <img class="first-image"  src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
-                                                <img class="second-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == false).ImageUrl" alt="product">
+                                                <img class="first-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
+                                                @if (item.ProductImages.Find(i => i.IsMain == false) != null)
+                                                {
+                                                    <img class="second-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == false ).ImageUrl" alt="product">
+                                                }
                                             </a>
                                             @if (item.DiscountPrice != 0)
                                             {

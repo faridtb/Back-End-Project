@@ -1,9 +1,11 @@
 ﻿using Allup.DAL;
+using Allup.Extentions;
 using Allup.Models;
 using Allup.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +16,15 @@ namespace Allup.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IConfiguration _config;
         private readonly AppDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AccountController(AppDbContext context,UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+        public AccountController(IConfiguration config,AppDbContext context,UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
         {
+            _config = config;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -42,6 +46,7 @@ namespace Allup.Controllers
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (!ModelState.IsValid) return View();
+
 
             User user = new User
             {
@@ -81,7 +86,10 @@ namespace Allup.Controllers
             }
 
 
-            
+            EmailService emailService = new EmailService(_config.GetSection("ConfirmationParams:Email").Value, _config.GetSection("ConfirmationParams:Password").Value);
+            var emailResult = emailService.SendEmail(registerVM.Email);
+
+
             return RedirectToAction("login");
         }
 

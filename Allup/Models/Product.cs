@@ -22,7 +22,7 @@ namespace Allup.Models
 
 
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public List<IFormFile> Images { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

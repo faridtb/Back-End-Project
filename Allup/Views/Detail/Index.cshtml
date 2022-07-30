@@ -347,7 +347,10 @@
                             <div class="product-image">
                                 <a href="single-product.html">
                                     <img class="first-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == true ).ImageUrl" alt="product">
-                                    <img class="second-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == false ).ImageUrl" alt="product">
+                                    @if (item.ProductImages.Find(i => i.IsMain == false) != null)
+                                    {
+                                        <img class="second-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == false ).ImageUrl" alt="product">
+                                    }
                                 </a>
                                 <ul class="product-meta">
                                     <li><a href="#"><i class="icon ion-bag"></i></a></li>

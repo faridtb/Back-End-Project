@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title" style="text-align :center">Orders</h2>
+                <h2 class="mb-2 page-title" style="text-align :center">All Orders</h2>
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
@@ -28,48 +28,48 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>@item.Id</td>
-                                                <td>@item.CreatedAt.Value.Date.ToLongDateString()</td>
-                                                <td>@item.FirstName @item.Surname</td>
-                                                <td>@item.Phone</td>
-                                                <td>@item.Address</td>
-                                                <td>@item.Country / @item.City</td>
-                                                <td>@item.TotalPrice</td>
-                                                <td>@item.PaymantMethod</td>
-                                                @switch (item.OrderStatus)
-                                                {
-                                                    case OrderStatus.New:
-                                                        <td style="height:20px;width:10px;"><span class="badge badge-primary">New</span></td>
-                                                        break;
-                                                    case OrderStatus.Delivering:
-                                                        <td style="height:20px;width:10px;"><span class="badge badge-info">Delivering</span></td>
-                                                        break;
-                                                    case OrderStatus.Completed:
-                                                        <td style="height:20px;width:10px;"><span class="badge badge-success">Completed</span></td>
-                                                        break;
-                                                    case OrderStatus.Closed:
-                                                        <td style="height:20px;width:10px;"><span class="badge badge-secondary">Closed</span></td>
-                                                        break;
-                                                    case OrderStatus.Canceled:
-                                                        <td style="height:20px;width:10px;"><span class="badge badge-danger">Canceled</span></td>
-                                                        break;
-                                                    default:
-                                                        break;
-                                                }
-                                                <td style="text-align:center">
-                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
-                                                    <div style="text-align:center;" class="dropdown-menu dropdown-menu-right">
-                                                        <a style="margin: 10px; width: 150px;height: 25px; text-align: center; background-color: #2F429E; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="New" asp-route-id="@item.Id">New</a>
-                                                        <a style="margin: 10px; width: 150px;height: 25px; text-align: center; background-color: #17A2B8; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Delivering" asp-route-id="@item.Id">Delivering</a>
-                                                        <a style="margin: 10px; width: 150px; height: 25px; text-align: center; background-color: #1B8931; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Completed" asp-route-id="@item.Id">Completed</a>
-                                                        <a style="margin: 10px; width: 150px; height: 25px; text-align: center; background-color: #5F5F5F; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Closed" asp-route-id="@item.Id">Closed</a>
-                                                        <a style="margin: 10px; width: 150px; height: 25px; text-align: center; background-color: #FF5A4D; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Canceled" asp-route-id="@item.Id">Canceled</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.CreatedAt.Value.Date.ToLongDateString()</td>
+                                            <td>@item.FirstName @item.Surname</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Address</td>
+                                            <td>@item.Country / @item.City</td>
+                                            <td>@item.TotalPrice</td>
+                                            <td>@item.PaymantMethod</td>
+                                            @switch (item.OrderStatus)
+                                            {
+                                                case OrderStatus.New:
+                                                    <td><span style="height:25px;width:70px;font-size:11px;text-align:center;display:flex;justify-content:center;align-items:center;" class="badge badge-primary">New</span></td>
+                                                    break;
+                                                case OrderStatus.Delivering:
+                                                    <td><span style="height:25px;width:70px;font-size:11px;text-align:center;display:flex;justify-content:center;align-items:center;" class="badge badge-info">Delivering</span></td>
+                                                    break;
+                                                case OrderStatus.Completed:
+                                                    <td><span style="height: 25px; width: 70px; font-size: 11px; text-align: center; display: flex; justify-content: center; align-items: center;" class="badge badge-success">Completed</span></td>
+                                                    break;
+                                                case OrderStatus.Closed:
+                                                    <td><span style="height: 25px; width: 70px; font-size: 11px; text-align: center; display: flex; justify-content: center; align-items: center;" class="badge badge-secondary">Closed</span></td>
+                                                    break;
+                                                case OrderStatus.Canceled:
+                                                    <td><span style="height: 25px; width: 70px; font-size: 11px; text-align: center; display: flex; justify-content: center; align-items: center;" class="badge badge-danger">Canceled</span></td>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                            <td style="text-align:center">
+                                                <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="text-muted sr-only">Action</span>
+                                                </button>
+                                                <div style="text-align:center;" class="dropdown-menu dropdown-menu-right">
+                                                    <a style="margin: 10px; width: 150px;height: 25px; text-align: center; background-color: #2F429E; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="New" asp-route-id="@item.Id">New</a>
+                                                    <a style="margin: 10px; width: 150px;height: 25px; text-align: center; background-color: #17A2B8; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Delivering" asp-route-id="@item.Id">Delivering</a>
+                                                    <a style="margin: 10px; width: 150px; height: 25px; text-align: center; background-color: #1B8931; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Completed" asp-route-id="@item.Id">Completed</a>
+                                                    <a style="margin: 10px; width: 150px; height: 25px; text-align: center; background-color: #5F5F5F; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Closed" asp-route-id="@item.Id">Closed</a>
+                                                    <a style="margin: 10px; width: 150px; height: 25px; text-align: center; background-color: #FF5A4D; color: white; border-radius: 5px; margin: 10px;" class="dropdown-item" asp-action="statuscontrol" asp-route-status="Canceled" asp-route-id="@item.Id">Canceled</a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>
