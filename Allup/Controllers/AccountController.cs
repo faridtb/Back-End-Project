@@ -85,11 +85,6 @@ namespace Allup.Controllers
                 _context.SaveChanges();
             }
 
-
-            EmailService emailService = new EmailService(_config.GetSection("ConfirmationParams:Email").Value, _config.GetSection("ConfirmationParams:Password").Value);
-            var emailResult = emailService.SendEmail(registerVM.Email);
-
-
             return RedirectToAction("login");
         }
 

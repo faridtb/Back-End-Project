@@ -18,7 +18,7 @@ namespace Allup.Extentions
         }
 
 
-        public bool SendEmail(string UserEmail)
+        public bool SendEmail(string UserEmail,string content = null)
         {
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress(_privateEmail);
@@ -26,7 +26,7 @@ namespace Allup.Extentions
 
             mailMessage.Subject = "Invoice";
             mailMessage.IsBodyHtml = true;
-            mailMessage.Body = "salam";
+            mailMessage.Body = content;
 
             SmtpClient client = new SmtpClient();
             client.Credentials = new System.Net.NetworkCredential(_privateEmail, _privatePassword);

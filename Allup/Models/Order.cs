@@ -26,7 +26,7 @@ namespace Allup.Models
         public string PaymantMethod { get; set; }
         public double TotalPrice { get; set; }
         public OrderStatus OrderStatus { get; set; }
-
+        public string InvoiceNo { get; set; }
         public string UserId { get; set; }
 
         public User User { get; set; }
