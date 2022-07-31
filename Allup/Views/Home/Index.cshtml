@@ -110,8 +110,8 @@
                                                 }
                                         </a>
                                         <ul class="product-meta">
-                                            <li><a asp-controller="dbbasket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
-                                            <li><a asp-controller="wishlist" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a asp-controller="dbbasket" asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="wishlist"  asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                         </ul>
                                     </div>
@@ -150,8 +150,8 @@
                                             }
                                         </a>
                                         <ul class="product-meta">
-                                            <li><a asp-controller="dbbasket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
-                                            <li><a asp-controller="wishlist" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a asp-controller="dbbasket"  asp-route-ReturnUrl="@Context.Request.Path"asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="wishlist"  asp-route-ReturnUrl="@Context.Request.Path"asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                         </ul>
                                     </div>
@@ -190,8 +190,8 @@
                                             }
                                         </a>
                                         <ul class="product-meta">
-                                            <li><a asp-controller="dbbasket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
-                                            <li><a asp-controller="wishlist" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a asp-controller="dbbasket"  asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="wishlist"  asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                         </ul>
                                     </div>

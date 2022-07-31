@@ -27,9 +27,7 @@ namespace Allup.ViewComponents
         {
 
             var userId = _userManager.GetUserId(Request.HttpContext.User);
-
-            double totalPrice = 0;
-            int totalCount = 0;
+            var user = await _userManager.FindByIdAsync(userId);
 
             Basket basket;
 
@@ -53,15 +51,9 @@ namespace Allup.ViewComponents
                     _context.SaveChanges();
                 }
 
-                foreach (var item in basket.BasketItems)
-                {
-                    totalPrice += item.ProductCount * item.Product.Price;
-                    totalCount += item.ProductCount;
-                }
             }
 
-            ViewBag.TotalPrice = totalPrice;
-            ViewBag.TotalCount = totalCount;
+            ViewBag.CurrentUser = user;
 
             return View(await Task.FromResult(basket));
         }

@@ -184,6 +184,18 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                            <i class="fe fe-user fe-16"></i>
+                            <span class="ml-3 item-text">Profile</span>
+                        </a>
+                        <ul class="collapse list-unstyled pl-4 w-100" id="profile">
+                            <a class="nav-link pl-3" asp-controller="user" asp-action="index" ><span class="ml-1">All Users</span></a>
+                            <a class="nav-link pl-3" asp-controller="user" asp-action="active"><span class="ml-1">Update</span></a>
+                            <a class="nav-link pl-3" asp-controller="user" asp-action="getBlocked"><span class="ml-1">Blocked</span></a>
+                            <a class="nav-link pl-3" asp-controller="user" asp-action="active"><span class="ml-1">Active</span></a>
+                        </ul>
+                    </li>
                 </ul>
 
             </nav>

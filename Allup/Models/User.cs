@@ -10,12 +10,11 @@ namespace Allup.Models
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-
-        [NotMappedAttribute]
         public List<Order> Orders { get; set; }
         public Basket basket { get; set; }
         public List<Comment> Comments { get; set; }
         public Nullable<double> Balance { get; set; }
+        public Nullable<DateTime> RegistrationDate { get; set; }
     }
 
     public enum Roles

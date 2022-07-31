@@ -18,6 +18,9 @@ namespace Allup.Controllers
             _context = context;
             _userManager = userManager;
         }
+
+
+        
         public IActionResult Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -63,6 +66,7 @@ namespace Allup.Controllers
                 item.BasketId = basket.Id;
                 item.ProductCount = 1;
                 item.Total = item.ProductCount * product.Price;
+                basket.TotalPrice += item.Total;
 
                 _context.Add(item);
             }
@@ -70,6 +74,7 @@ namespace Allup.Controllers
             {
                 isexsist.ProductCount++;
                 isexsist.Total = isexsist.ProductCount * product.Price;
+                basket.TotalPrice += isexsist.Total;
 
             }
 
@@ -96,32 +101,13 @@ namespace Allup.Controllers
 
             _context.BasketItems.Remove(deleteItem);
 
+            basket.TotalPrice -= deleteItem.Total;
+
             _context.SaveChanges();
 
             if (ReturnUrl != null) return Redirect(ReturnUrl);
 
             return RedirectToAction("index", "shop");
-        }
-
-        public IActionResult RemoveIndex(int id, string ReturnUrl)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (userId == null) return RedirectToAction("login", "account");
-
-            Basket basket = _context.Baskets.FirstOrDefault(b => b.UserId == userId);
-
-            List<BasketItem> basketItems = _context.BasketItems.Where(b => b.BasketId == basket.Id).ToList();
-
-            BasketItem deleteItem = basketItems.FirstOrDefault(p => p.ProductId == id);
-
-            _context.BasketItems.Remove(deleteItem);
-
-            _context.SaveChanges();
-
-            if (ReturnUrl != null) return Redirect(ReturnUrl);
-
-            return RedirectToAction("index", "basket");
         }
 
         public IActionResult Plus(int id)
@@ -143,6 +129,7 @@ namespace Allup.Controllers
                 var item = _context.BasketItems.FirstOrDefault(b => b.Id == increaseItem.Id);
                 item.ProductCount++;
                 item.Total = item.ProductCount * product.Price;
+                basket.TotalPrice += item.Total;
                 _context.SaveChanges();
             }
 
@@ -168,15 +155,34 @@ namespace Allup.Controllers
                 var item = _context.BasketItems.FirstOrDefault(b => b.Id == decreaseItem.Id);
                 item.ProductCount--;
                 item.Total = item.ProductCount * product.Price;
+                basket.TotalPrice -= item.Total;
                 _context.SaveChanges();
             }
             else
             {
                 _context.BasketItems.Remove(decreaseItem);
+                basket.TotalPrice -= decreaseItem.Total;
                 _context.SaveChanges();
             }
 
             return RedirectToAction("index", "dbbasket");
+        }
+
+        public IActionResult BasketFormat()
+        {
+            var baskets = _context.Baskets.Include(b => b.BasketItems).ToList();
+
+            foreach (var item in baskets)
+            {
+                item.TotalPrice = 0;
+                foreach (var bitem in item.BasketItems)
+                {
+                    item.TotalPrice += bitem.Total;
+                }
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("index", "home");
         }
 
     }

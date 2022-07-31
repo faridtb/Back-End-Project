@@ -23,15 +23,22 @@ namespace Allup.ViewComponents
         {
             var userId = _userManager.GetUserId(Request.HttpContext.User);
 
+            var user =  await _userManager.FindByIdAsync(userId);
+
             List<Order> orders;
 
-            if (userId == null)
+            if (user != null)
             {
-                orders = new List<Order>();
+                var roles = await _userManager.GetRolesAsync(user);
+                orders = _context.Orders.Where(o => o.UserId == userId).ToList();
+
+                ViewBag.CurrentUser = user;
+                ViewBag.CurrentUserRoles = roles;
             }
             else
             {
-                orders = _context.Orders.Where(o => o.UserId == userId).ToList(); ;
+                orders = new List<Order>();
+
             }
 
 

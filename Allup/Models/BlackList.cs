@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace Allup.Models
 {
-    public class Basket 
+    public class BlackList
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
-        public double TotalPrice { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
-        public List<BasketItem> BasketItems { get; set; }
+        public int GivenTime { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

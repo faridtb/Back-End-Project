@@ -54,6 +54,7 @@ namespace Allup.Controllers
                 Surname = registerVM.Surname,
                 Email = registerVM.Email,
                 UserName = registerVM.Username,
+                RegistrationDate = DateTime.Now,
 
             };
 
@@ -80,7 +81,7 @@ namespace Allup.Controllers
 
             if (basket == null)
             {
-                basket = new Basket() { UserId = user.Id };
+                basket = new Basket() { UserId = user.Id , TotalPrice = 0};
                 _context.Add(basket);
                 _context.SaveChanges();
             }

@@ -55,5 +55,11 @@ namespace Allup.Areas.Admin.Controllers
             return RedirectToAction("index");
         }
 
+
+        public IActionResult OrderDetails(int id)
+        {
+
+            return View();
+        }
     }
 }

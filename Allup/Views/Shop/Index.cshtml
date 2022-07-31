@@ -76,9 +76,8 @@
                                                 }
                                             </a>
                                             <ul class="product-meta">
-                                                <li><a asp-controller="dbbasket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
-                                                <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
-                                                <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                                <li><a asp-controller="dbbasket" asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                                <li><a asp-controller="wishlist" asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
                                                 <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                             </ul>
                                             
@@ -88,7 +87,7 @@
                                             }
                                         </div>
                                         <div class="product-content">
-                                            <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
+                                            <h4 class="product-title"><a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">@item.Name</a></h4>
                                             <ul class="product-rating">
                                                 <li class="rating-on"><i class="fas fa-star"></i></li>
                                                 <li class="rating-on"><i class="fas fa-star"></i></li>
@@ -143,9 +142,8 @@
                                             </div>
                                             <p> @item.Name</p>
                                             <ul class="product-meta">
-                                                <li><a asp-controller="basket" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
-                                                <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
-                                                <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                                <li><a asp-controller="dbbasket" asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                                <li><a asp-controller="wishlist" asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
                                                 <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                             </ul>
                                         </div>

@@ -1,0 +1,61 @@
+﻿@model List<User>
+    
+    @{
+        int count = 0;
+    }
+    <main role="main" class="main-content">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <h2 class="mb-2 page-title" style="text-align :center">Users/Customers</h2>
+                    <div class="row my-4">
+                        <!-- Small table -->
+                        <div class="col-md-12">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <!-- table -->
+                                    <table class="table datatables" id="dataTable-1">
+                                        <thead>
+                                            <tr style="text-align:start;">
+                                                <th>No</th>
+                                                <th>Name/Surname</th>
+                                                <th>Username</th>
+                                                <th>Email</th>
+                                                <th>Orders Count</th>
+                                                <th>Registration Date</th>
+                                                <th>Balance</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                            <tr style="text-align:start;">
+                                                <td>@(count++)</td>
+                                                <td>@item.Name @item.Surname</td>
+                                                <td>@item.UserName</td>
+                                                <td>@item.Email</td>
+                                                <td style="color:orangered;">@item.Orders.Count</td>
+                                                <td>@String.Format("{0:dd MMM yyyy HH:mm}", item.RegistrationDate).ToString()</td>
+                                                <td>$@(item.Balance = item.Balance > 0 ? item.Balance : 0)</td>
+                                                <td>
+                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" asp-controller="user" asp-action="update" asp-route-id="@item.Id">Edit</a>
+                                                        <a class="dropdown-item" asp-controller="user" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> <!-- simple table -->
+                    </div> <!-- end section -->
+                </div> <!-- .col-12 -->
+            </div> <!-- .row -->
+        </div> <!-- .container-fluid -->
+    </main> <!-- main -->

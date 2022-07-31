@@ -1,7 +1,6 @@
 ﻿using Allup.DAL;
 using Allup.Extentions;
 using Allup.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,13 +26,23 @@ namespace Allup.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(int? basketId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _context.Users.Find(userId);
+
+            if (user == null) return RedirectToAction("login", "account");
+
+            if (basketId == null) return RedirectToAction("index", "shop");
+
+            var basket = _context.Baskets.Include(b => b.BasketItems).ThenInclude(b => b.Product).FirstOrDefault(b => b.Id == basketId);
+
+            if (basket.TotalPrice * 1.1 > user.Balance)
+            {
+                return RedirectToAction("index", "home");
+            }
 
             Order order = new Order();
-
-            var basket = _context.Baskets.Include(b => b.BasketItems).ThenInclude(b => b.Product).FirstOrDefault(b => b.UserId == userId);
 
             ViewBag.BasketItems = basket.BasketItems.ToList();
 
@@ -56,19 +65,12 @@ namespace Allup.Controllers
 
             var basketItems = basket.BasketItems.ToList();
 
-            double total = 0;
-
-            foreach (var item in basketItems)
-            {
-                total += item.Product.Price * item.ProductCount;
-            }
-
-            if (user.Balance <= total)
+            if (user.Balance < basket.TotalPrice)
             {
                 return RedirectToAction("index", "home");
             }
 
-            user.Balance -= total;
+            user.Balance -= basket.TotalPrice;
 
             Order newOrder = new Order();
             Random random = new Random();
@@ -102,17 +104,17 @@ namespace Allup.Controllers
                 newOrderitem.Total += item.Product.Price * item.ProductCount;
                 newOrder.TotalPrice += newOrderitem.Total;
 
+                _context.Products.Find(item.ProductId).StockCount -= item.ProductCount;
                 _context.OrderItems.Add(newOrderitem);
                 _context.BasketItems.Remove(item);
             }
 
+            basket.TotalPrice = 0;
             _context.SaveChanges();
 
             EmailService emailService = new EmailService(_config.GetSection("ConfirmationParams:Email").Value, _config.GetSection("ConfirmationParams:Password").Value);
 
-            emailService.SendEmail(user.Email, "invoice-send", $"Customer:{newOrder.FirstName}", SendInovoice(newOrder.Id), $"{newOrder.InvoiceNo}.pdf");
-
-
+            emailService.SendEmail(user.Email, "invoice-send", $"Customer:{newOrder.FirstName}", SendInvoice(newOrder.Id), $"{newOrder.InvoiceNo}.pdf");
 
             return RedirectToAction("index", "home");
         }
@@ -147,7 +149,7 @@ namespace Allup.Controllers
             return View(order);
         }
 
-       public byte[] SendInovoice(int id)
+        public byte[] SendInvoice(int id)
         {
             var desktopView = new HtmlToPdf();
             desktopView.Options.WebPageWidth = 1024;
@@ -157,10 +159,9 @@ namespace Allup.Controllers
             var pdfBytes = pdf.Save();
 
 
-
             using (var streamWriter = new StreamWriter($@"C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\wwwroot\Pdfs\invoice({id}).pdf"))
             {
-                 streamWriter.BaseStream.WriteAsync(pdfBytes, 0, pdfBytes.Length);
+                streamWriter.BaseStream.WriteAsync(pdfBytes, 0, pdfBytes.Length);
             }
 
 
@@ -168,5 +169,6 @@ namespace Allup.Controllers
         }
 
 
+      
     }
 }

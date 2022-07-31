@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220730230334_mig-11.cs" />
+    <Compile Remove="Migrations\20220730230334_mig-11.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\assets\fonts\fa-brands-400.svg" />
     <None Include="wwwroot\assets\fonts\fa-brands-400.woff2" />
     <None Include="wwwroot\assets\fonts\fa-light-300.svg" />
