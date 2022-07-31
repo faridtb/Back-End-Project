@@ -116,7 +116,6 @@
                         </div>
                     </div>
                     <p>@Model.Product.Name</p>
-
                     <div class="product-size-color-quantity">
                         <div class="product-quantity mt-25">
                             <h5 class="title">Quantity</h5>
@@ -127,8 +126,9 @@
                             </div>
                         </div>
                     </div>
+                 
                     <div class="addcart">
-                        <button><i class="icon ion-bag"></i> Add to cart</button>
+                        <a asp-controller="dbbasket" asp-action="additem" asp-route-id="@Model.Product.Id"><i class="icon ion-bag"></i> Add to cart</a>
                     </div>
                     <div class="product-wishlist-compare">
                         <ul class="d-flex flex-wrap">

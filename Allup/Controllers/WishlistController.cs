@@ -31,15 +31,12 @@ namespace Allup.Controllers
             return View(wishLists);
         }
 
-        public ActionResult Additem(int id)
+        public ActionResult Additem(int id, string ReturnUrl)
         {
-
-
-            if (!User.Identity.IsAuthenticated) return BadRequest();
 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (currentUserId == null) return NotFound();
+            if (currentUserId == null) return RedirectToAction("login","account");
 
             Product dbProcduct = _context.Products
                     .Include(p => p.ProductImages)
@@ -64,6 +61,10 @@ namespace Allup.Controllers
                 ViewBag.WishCount = _context.WishLists.Count();
             }
 
+            if (ReturnUrl == null)
+            {
+                return RedirectToAction(ReturnUrl);
+            }
 
             return RedirectToAction("index", "home");
         }

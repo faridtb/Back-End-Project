@@ -118,7 +118,7 @@
                             </table>
                             <div class="row mt-5">
                                 <div class="col-2 text-center">
-                                    <img width="150" src="~/admin/assets/images/qrcode.svg" class="navbar-brand-img brand-sm mx-auto my-4" alt="...">
+                                    <img src="@ViewBag.QRCode" />
                                 </div>
                                 <div class="col-md-5">
                                     <p class="text-muted small">
@@ -139,6 +139,9 @@
                                             <span class="text-muted">Total : </span>
                                             <span>$@String.Format("{0:0.00}", (Model.TotalPrice * 1.1))</span>
                                         </p>
+                                    </div>
+                                    <div>
+                                        <img src="@Url.Action("GenerateBarcode") alt="BarCode"/>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,6 @@
 ﻿using Allup.DAL;
 using Allup.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -168,6 +169,7 @@ namespace Allup.Controllers
             return RedirectToAction("index", "dbbasket");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult BasketFormat()
         {
             var baskets = _context.Baskets.Include(b => b.BasketItems).ToList();

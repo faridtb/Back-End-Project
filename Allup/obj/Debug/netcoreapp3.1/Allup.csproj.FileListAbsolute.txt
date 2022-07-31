@@ -224,3 +224,16 @@ C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcorea
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\Select.Html.dep
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\Select.HtmlToPdf.dll
 C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\BarcodeStandard.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\QRCoder.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
+C:\Users\User\Desktop\Back-End Project\Back-End-Project\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Code\Index.cshtml.g.cs

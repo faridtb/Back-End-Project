@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Allup.Controllers
@@ -27,6 +28,13 @@ namespace Allup.Controllers
         }
         public IActionResult Index(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId != null)
+            {
+                var basket = _context.Baskets.Include(b => b.BasketItems).ThenInclude(b => b.Product).FirstOrDefault(b => b.UserId == userId);
+                ViewBag.CurrentBasketItems = basket.BasketItems; 
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -52,7 +60,6 @@ namespace Allup.Controllers
             shopVM.Brands = _context.Brands.ToList();
             shopVM.Banners = _context.ShippingBanners.ToList();
             //shopVM.User = _context.Users
-
 
             return View(shopVM);
 

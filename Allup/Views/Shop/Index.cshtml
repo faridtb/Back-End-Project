@@ -76,14 +76,21 @@
                                                 }
                                             </a>
                                             <ul class="product-meta">
-                                                <li><a asp-controller="dbbasket" asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                                @if (item.StockCount != 0)
+                                                {
+                                                    <li><a asp-controller="dbbasket" asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
+                                                }
                                                 <li><a asp-controller="wishlist" asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
                                                 <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                             </ul>
-                                            
+
                                             @if (item.DiscountPrice != 0)
                                             {
                                                 <span class="discount-product">@item.DiscountPrice</span>
+                                            }
+                                            @if (item.StockCount == 0)
+                                            {
+                                                <div style="background-color:dimgray;color:white;width:150px;height:20px;position:relative;text-align:center;top:0px;">OUT OF STOCK</div>
                                             }
                                         </div>
                                         <div class="product-content">
@@ -108,48 +115,50 @@
                     <div class="tab-pane fade " id="list" role="tabpanel" aria-labelledby="list-tab">
                         @foreach (var item in Model.PagedLists)
                         {
-                            <div class="single-product-list mt-30">
-                                <div class="row">
-                                    <div class="col-sm-5 col-xl-3">
-                                        <div class="product-image">
-                                            <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
-                                                <img class="first-image" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
-                                                @if (item.ProductImages.Find(i => i.IsMain == false) != null)
-                                                {
-                                                    <img class="second-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == false ).ImageUrl" alt="product">
-                                                }
-                                            </a>
-                                            @if (item.DiscountPrice != 0)
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="single-product mt-30">
+                                    <div class="product-image">
+                                        <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
+                                            <img class="first-image" asp-action="detail" src="~/assets/@item.ProductImages.Find(p=>p.IsMain == true).ImageUrl" alt="product">
+                                            @if (item.ProductImages.Find(i => i.IsMain == false) != null)
                                             {
-                                                <span class="discount-product">@item.DiscountPrice</span>
+                                                <img class="second-image" src="~/assets/@item.ProductImages.Find(i => i.IsMain == false ).ImageUrl" alt="product">
                                             }
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-7 col-xl-9">
-                                        <div class="product-content">
-                                            <ul class="product-rating">
-                                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            </ul>
-                                            <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
-                                            <span class="availability">Availability: @item.StockCount In Stock</span>
-                                            <div class="product-price">
-                                                <span class="regular-price">€@item.DiscountPrice</span>
-                                                <span class="price-sale">€@item.Price</span>
-                                            </div>
-                                            <p> @item.Name</p>
-                                            <ul class="product-meta">
+                                        </a>
+                                        <ul class="product-meta">
+                                            @if (item.StockCount != 0)
+                                            {
                                                 <li><a asp-controller="dbbasket" asp-route-ReturnUrl="@Context.Request.Path" asp-action="AddItem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
-                                                <li><a asp-controller="wishlist" asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
-                                                <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
-                                            </ul>
+                                            }
+                                            <li><a asp-controller="wishlist" asp-route-ReturnUrl="@Context.Request.Path" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+
+                                        @if (item.DiscountPrice != 0)
+                                        {
+                                            <span class="discount-product">@item.DiscountPrice</span>
+                                        }
+                                        @if (item.StockCount == 0)
+                                        {
+                                            <div style="background-color:dimgray;color:white;width:150px;height:20px;position:relative;text-align:center;top:0px;">OUT OF STOCK</div>
+                                        }
+                                    </div>
+                                    <div class="product-content">
+                                        <h4 class="product-title"><a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">@item.Name</a></h4>
+                                        <ul class="product-rating">
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <div class="product-price">
+                                            <span class="regular-price">€@item.Price</span>
+                                            <span class="price-sale">€@(item.Price -item.DiscountPrice)</span>
                                         </div>
                                     </div>
-                                </div>
-                            </div> <!-- single product List -->
+                                </div> <!-- single product -->
+                            </div>
                         }
                     </div>
                 </div> <!-- Tab Content -->

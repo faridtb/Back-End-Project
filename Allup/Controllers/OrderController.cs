@@ -1,12 +1,16 @@
 ﻿using Allup.DAL;
 using Allup.Extentions;
 using Allup.Models;
+using BarcodeLib;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using QRCoder;
 using SelectPdf;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -107,7 +111,7 @@ namespace Allup.Controllers
                 _context.Products.Find(item.ProductId).StockCount -= item.ProductCount;
                 _context.OrderItems.Add(newOrderitem);
                 _context.BasketItems.Remove(item);
-            }
+            }     
 
             basket.TotalPrice = 0;
             _context.SaveChanges();
@@ -146,6 +150,8 @@ namespace Allup.Controllers
                .ThenInclude(o => o.Product)
                .FirstOrDefault(o => o.Id == id);
 
+            ViewBag.QRCode = QrCodeGenerator($"Invoice No-{order.InvoiceNo}\nCustomer: {order.FirstName}\n{order.Surname}\nTotal Price:{order.TotalPrice}\n" +
+                $"Bizi Secdiyiniz Ucun Teshekkurler ,Hormetle FARID BALIYEV - CEO ALLUP");
             return View(order);
         }
 
@@ -168,7 +174,22 @@ namespace Allup.Controllers
             return pdfBytes;
         }
 
+        public string QrCodeGenerator(string inputText)
+        {
+            string content = String.Empty;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
+                QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(inputText, QRCodeGenerator.ECCLevel.Q);
+                QRCode qRCode = new QRCode(qRCodeData);
+                using (Bitmap bitmap = qRCode.GetGraphic(15))
+                {
+                    bitmap.Save(ms, ImageFormat.Png);
+                    content = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return content;
+        }
 
-      
     }
 }
